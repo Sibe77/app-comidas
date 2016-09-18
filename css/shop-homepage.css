@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Baloo Tamma';
-  src: url('BalooTamma-Regular.eot'); /* IE9 Compat Modes */
-  src: url('BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('BalooTamma-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('BalooTamma-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-       url('BalooTamma-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('BalooTamma-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('fonts/BalooTamma-Regular.eot'); /* IE9 Compat Modes */
+  src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/BalooTamma-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/BalooTamma-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('fonts/BalooTamma-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 /*!
@@ -158,18 +158,26 @@ footer {
 
 /* Tablets */
 @media only screen and (min-width:768px) and (max-width: 1199px)  {
+    body {
+        padding-top: 85px;
+    }
+
     .field {
         position: static;
-        margin: 86px auto 0;
+        margin: 0 auto;
         width: 60vw;
     }
 }
 
 /* Desktop */
 @media only screen and (min-width: 1200px)  {
+    body {
+        padding-top: 85px;
+    }
+
     .field {
         position: static;
-        margin: 86px auto 0;
+        margin: 0 auto;
         width: 60vw;
     }
 }
