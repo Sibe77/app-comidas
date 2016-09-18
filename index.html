@@ -1,1 +1,101 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Go Nueva Cordoba</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-app="">
+    <div ng-init="productos = [
+    {nombre:'Combo Stacker® Cuádruple', precio:'$172', descripcion: 'Ingredientes: cuatro medallones 100% de carne vacuna a la parrilla, pan con cobertura de semillas de sésamo, tiras panceta tostada y queso cheddar.', cliente: 'Burger King', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Lomo especial', precio:'$100', descripcion: 'Lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Caserita', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Lomo doble', precio:'$130', descripcion: '220 gr. de lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Delicity', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Pizza', precio:'$95', descripcion: 'Asasasas', cliente: 'Jacinto', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Pastas', precio:'$95', descripcion: 'Asasasas', cliente: 'Pedro', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Combo Stacker® Cuádruple', precio:'$172', descripcion: 'Ingredientes: cuatro medallones 100% de carne vacuna a la parrilla, pan con cobertura de semillas de sésamo, tiras panceta tostada y queso cheddar.', cliente: 'Burger King', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Lomo especial', precio:'$100', descripcion: 'Lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Caserita', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Lomo doble', precio:'$130', descripcion: '220 gr. de lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Delicity', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Pizza', precio:'$95', descripcion: 'Asasasas', cliente: 'Jacinto', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
+
+    {nombre:'Pastas', precio:'$95', descripcion: 'Asasasas', cliente: 'Pedro', telefono: '351-7715665', keywords: 'comida sana, saludable, light'}
+
+    ]">
+    </div>
+
+    <div class="field" id="searchform">  
+      <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" />
+      <button type="button" id="search">Go!</button>
+    </div>
+
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div ng-repeat="producto in productos | filter:searchText" class="col-sm-6 col-lg-4 col-md-6">
+            <div class="thumbnail">
+                <img src="http://lorempixel.com/320/150/food/" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">{{producto.precio}}</h4>
+                    <h4><p class="nombre" href="#">{{producto.nombre}}</p>
+                    </h4>
+                    <p class="descripcion">{{producto.descripcion}}</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">{{producto.telefono}}</p>
+                    <p class="cliente">
+                        {{producto.cliente}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+        <!-- Footer -->
+        <footer>
+
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
