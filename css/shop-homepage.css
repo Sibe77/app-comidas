@@ -1,4 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Baloo+Tamma);
+@font-face {
+  font-family: 'Baloo Tamma';
+  src: url('BalooTamma-Regular.eot'); /* IE9 Compat Modes */
+  src: url('BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('BalooTamma-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('BalooTamma-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('BalooTamma-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('BalooTamma-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 
 /*!
  * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
