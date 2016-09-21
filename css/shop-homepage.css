@@ -109,14 +109,18 @@ body {
 .field {
     display:flex;
     position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
     flex-direction:row;
-    -webkit-box-shadow: -1px 0px 70px -7px black;
-    -moz-box-shadow:    -1px 0px 70px -7px black;
-    box-shadow:         -1px 0px 70px -7px black;
-
+    -webkit-box-shadow: 0px 0px 15px 0px black;
+    -moz-box-shadow:    0px 0px 15px 0px black;
+    box-shadow:         0px 0px 15px 0px black;
     z-index: 1;
-    margin: 10px 2.5vw;
-    width: 95vw;
+    width: 100vw;
+}
+
+.nav-up {
+    top: -45px; 
 }
 
 .field #searchterm{
@@ -158,15 +162,7 @@ footer {
 
 /* Tablets */
 @media only screen and (min-width:768px) and (max-width: 1199px)  {
-    body {
-        padding-top: 85px;
-    }
-
-    .field {
-        position: static;
-        margin: 0 auto;
-        width: 60vw;
-    }
+    
 }
 
 /* Desktop */
