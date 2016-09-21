@@ -8,7 +8,7 @@ $(window).scroll(function(event){
 });
 
 setInterval(function() {
-    if (true) {
+    if (didScroll) {
         hasScrolled();
         didScroll = false;
     }

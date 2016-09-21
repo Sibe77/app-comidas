@@ -110,7 +110,6 @@ body {
     display:flex;
     position: fixed;
     top: 0;
-    transition: top 0.2s ease-in-out;
     flex-direction:row;
     -webkit-box-shadow: 0px 0px 15px 0px black;
     -moz-box-shadow:    0px 0px 15px 0px black;
