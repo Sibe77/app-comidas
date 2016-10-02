@@ -38,9 +38,12 @@
 
     <!-- Page Content -->
     <div class="container">
+        <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->
+        <div ng-if="productos == null">
+        </div>
 
+        <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->
         <div ng-if="productos != null && productos.length === 0">
-            <h1> Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda.</h1>
         </div>
 
         <div ng-repeat="producto in productos" class="col-sm-6 col-lg-4 col-md-6">
