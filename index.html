@@ -27,30 +27,7 @@
 
 </head>
 
-<body ng-app="">
-    <div ng-init="productos = [
-    {nombre:'Combo Stacker® Cuádruple', precio:'$172', descripcion: 'Ingredientes: cuatro medallones 100% de carne vacuna a la parrilla, pan con cobertura de semillas de sésamo, tiras panceta tostada y queso cheddar.', cliente: 'Burger King', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Lomo especial', precio:'$100', descripcion: 'Lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Caserita', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Lomo doble', precio:'$130', descripcion: '220 gr. de lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Delicity', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Pizza', precio:'$95', descripcion: 'Asasasas', cliente: 'Jacinto', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Pastas', precio:'$95', descripcion: 'Asasasas', cliente: 'Pedro', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Combo Stacker® Cuádruple', precio:'$172', descripcion: 'Ingredientes: cuatro medallones 100% de carne vacuna a la parrilla, pan con cobertura de semillas de sésamo, tiras panceta tostada y queso cheddar.', cliente: 'Burger King', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Lomo especial', precio:'$100', descripcion: 'Lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Caserita', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Lomo doble', precio:'$130', descripcion: '220 gr. de lomo, tomate, lechuga, jamón, queso, huevos y papas fritas.', cliente: 'Delicity', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Pizza', precio:'$95', descripcion: 'Asasasas', cliente: 'Jacinto', telefono: '351-7715665', keywords: 'comida sana, saludable, light'},
-
-    {nombre:'Pastas', precio:'$95', descripcion: 'Asasasas', cliente: 'Pedro', telefono: '351-7715665', keywords: 'comida sana, saludable, light'}
-
-    ]">
-    </div>
+<body ng-app="myApp" ng-controller="appController">
 
     <form class="field" id="searchform">
         <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" />
@@ -61,19 +38,27 @@
 
     <!-- Page Content -->
     <div class="container">
+        <div ng-if="searchT">
+            <h1> Esto se muestra cuando no hay productos.</h1>
+        </div>
+
+        <div ng-if="productos != null && productos.length === 0">
+            <h1> Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda.</h1>
+        </div>
+
         <div ng-repeat="producto in productos | filter:searchText" class="col-sm-6 col-lg-4 col-md-6">
             <div class="thumbnail">
                 <img src="http://lorempixel.com/320/150/food/" alt="">
                 <div class="caption">
-                    <h4 class="pull-right">{{producto.precio}}</h4>
-                    <h4><p class="nombre" href="#">{{producto.nombre}}</p>
+                    <h4 class="pull-right">${{producto.precio}}</h4>
+                    <h4><p class="nombre" href="#">{{producto.producto}}</p>
                     </h4>
                     <p class="descripcion">{{producto.descripcion}}</p>
                 </div>
                 <div class="ratings">
                     <p class="pull-right">{{producto.telefono}}</p>
                     <p class="cliente">
-                        {{producto.cliente}}
+                        {{producto.cliente[0].cliente}}
                     </p>
                 </div>
             </div>
@@ -98,6 +83,8 @@
 
     <script src="js/headerScrolling.js"></script>
     <script src="js/loseFocusOnEnter.js"></script>
+    <script src="js/app.js"></script>
+
 </body>
 
 </html>
