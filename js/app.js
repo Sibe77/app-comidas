@@ -6,42 +6,44 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 	function init () {
 		$.ajax({
-		  url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
-		  headers: {
-		    'Accept': 'application/json',
-		    'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
-		  },
-		  success: function (data) {
-		    allProducts = data;
-		  },
-		  error: function (error) {
-		    console.log('error', error);
-		  }
-		});
-
-		$.ajax({
-		  url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/clientes',
-		  headers: {
-		    'Accept': 'application/json',
-		    'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
-		  },
-		  success: function (data) {
-		    mergeClients(data);
-		  },
-		  error: function (error) {
-		    console.log('error', error);
-		  }
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (productsData) {
+				allProducts = productsData;
+				getClientsFromService();
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
 		});
 	}
-	init();
 
-	function mergeClients(clients)
+	function getClientsFromService() {
+		$.ajax({
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/clientes',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (clientsData) {
+				mergeClients(clientsData, allProducts);
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
+		});
+	};
+
+	function mergeClients(clients, products)
 	{
-		for (var product in allProducts) {
-			var productClientID = allProducts[product].cliente[0].id;
+		for (var product in products) {
+			var productClientID = products[product].cliente[0].id;
 			for (var client in clients) {
 				if (clients[client].id === productClientID) {
-					allProducts[product].cliente = clients[client];
+					products[product].cliente = clients[client];
 				}
 			}
 		}
@@ -63,4 +65,5 @@ myApp.controller('appController', ['$scope', function($scope) {
 		$scope.productos = matches;
 	}
 
+	init();
 }]);
