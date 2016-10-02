@@ -25,11 +25,22 @@ myApp.controller('appController', ['$scope', function($scope) {
 	    'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
 	  },
 	  success: function (data) {
-	    clientes = data;
+	    mergeClients(data);
 	  },
 	  error: function (error) {
 	    console.log('error', error);
 	  }
 	});
 
+	function mergeClients(clients)
+	{
+		for (var product in $scope.productos) {
+			var productClientID = $scope.productos[product].cliente[0].id;
+			for (var client in clients) {
+				if (clients[client].id === productClientID) {
+					$scope.productos[product].cliente = clients[client];
+				}
+			}
+		}
+	}
 }]);

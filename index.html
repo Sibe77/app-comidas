@@ -48,7 +48,7 @@
 
         <div ng-repeat="producto in productos | filter:searchText" class="col-sm-6 col-lg-4 col-md-6">
             <div class="thumbnail">
-                <img src="http://lorempixel.com/320/150/food/" alt="">
+                <img src="{{producto.cliente.imagen}}" alt="">
                 <div class="caption">
                     <h4 class="pull-right">${{producto.precio}}</h4>
                     <h4><p class="nombre" href="#">{{producto.producto}}</p>
@@ -56,9 +56,9 @@
                     <p class="descripcion">{{producto.descripcion}}</p>
                 </div>
                 <div class="ratings">
-                    <p class="pull-right">{{producto.telefono}}</p>
+                    <p class="pull-right">{{producto.cliente.telefono}}</p>
                     <p class="cliente">
-                        {{producto.cliente[0].cliente}}
+                        {{producto.cliente.cliente}}
                     </p>
                 </div>
             </div>
