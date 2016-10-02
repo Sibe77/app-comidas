@@ -53,6 +53,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 		$scope.productos = [];
 		var matches = [];
 
+		console.log($scope.productos);
+
 		for (var product in allProducts) {
 			var searchQuery = new RegExp(filter, "i");
 			if (allProducts[product].producto.search(searchQuery) >= 0) {

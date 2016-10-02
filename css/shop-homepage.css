@@ -97,13 +97,12 @@
 
 body {
     min-height: 100vh;
-    background-color: #3B2415;
     padding-top: 70px;
 }
 body::after {
   content: "";
   background: url("../images/backgroundPattern.png");
-  opacity: 0.3;
+  opacity: 0.2;
   top: 0;
   left: 0;
   bottom: 0;
@@ -159,18 +158,23 @@ footer {
 
 /* Celulares */
 @media only screen and (min-width:480px) and (max-width: 767px)  {
-
+    body {
+        background-color: #D4D4D4;
+    }
 }
 
 /* Tablets */
 @media only screen and (min-width:768px) and (max-width: 1199px)  {
-    
+    body {
+        background-color: #313131;
+    }
 }
 
 /* Desktop */
 @media only screen and (min-width: 1200px)  {
     body {
         padding-top: 85px;
+        background-color: #313131;
     }
 
     .field {
