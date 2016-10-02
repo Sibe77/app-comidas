@@ -48,7 +48,7 @@
 
         <div ng-repeat="producto in productos | filter:searchText" class="col-sm-6 col-lg-4 col-md-6">
             <div class="thumbnail">
-                <img src="{{producto.cliente.imagen}}" alt="">
+                <img ng-src="{{producto.cliente.imagen}}" alt="{{producto.cliente.cliente}}">
                 <div class="caption">
                     <h4 class="pull-right">${{producto.precio}}</h4>
                     <h4><p class="nombre" href="#">{{producto.producto}}</p>
