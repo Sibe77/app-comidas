@@ -137,14 +137,14 @@ button img {
 .homePromotional .promotionalText {
     width: 90vw;
     position: absolute;
-    top: 30vh;
+    top: 25vh;
     left: 5vw;
 }
 
 .homePromotional .logo {
     width: 50vw;
     position: absolute;
-    bottom: 31px;
+    bottom: 25vh;
     left: 25vw;
 }
 
