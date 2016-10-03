@@ -134,20 +134,6 @@ button img {
   width: 25px;
 }
 
-.homePromotional .promotionalText {
-    width: 90vw;
-    position: absolute;
-    top: 25vh;
-    left: 5vw;
-}
-
-.homePromotional .logo {
-    width: 50vw;
-    position: absolute;
-    bottom: 25vh;
-    left: 25vw;
-}
-
 .field #searchterm{
     width: 0;
 }
@@ -182,12 +168,40 @@ footer {
     body {
         background-color: #D4D4D4;
     }
+
+    .homePromotional .promotionalText {
+        width: 90vw;
+        position: absolute;
+        top: 25vh;
+        left: 5vw;
+    }
+
+    .homePromotional .logo {
+        width: 50vw;
+        position: absolute;
+        bottom: 25vh;
+        left: 25vw;
+    }
 }
 
 /* Tablets */
 @media only screen and (min-width:768px) and (max-width: 1199px)  {
     body {
         background-color: #313131;
+    }
+
+    .homePromotional .promotionalText {
+        width: 50vw;
+        position: absolute;
+        top: 25vh;
+        left: 25vw;
+    }
+
+    .homePromotional .logo {
+        width: 20vw;
+        position: absolute;
+        bottom: 25vh;
+        left: 40vw;
     }
 }
 
@@ -202,5 +216,21 @@ footer {
         position: static;
         margin: 0 auto 70px;
         width: 60vw;
+    }
+
+    .homePromotional .promotionalText {
+        width: 50vw;
+        position: absolute;
+        top: 25vh;
+        left: 25vw;
+        display: none;
+    }
+
+    .homePromotional .logo {
+        width: 20vw;
+        position: absolute;
+        bottom: 25vh;
+        left: 40vw;
+        display: none;
     }
 }
