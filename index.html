@@ -30,8 +30,15 @@
 <body ng-app="myApp" ng-controller="appController">
 
     <form class="field" id="searchform" autocomplete="off">
+    <!-- 
+        <button type="submit" id="home" ng-click="goToHome()">
+            <img src="images/home.png">
+        </button>
+    -->
         <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" />
-        <button type="submit" id="search" ng-click="filter(searchText)">GO!</button>
+        <button type="submit" id="search" ng-click="filter(searchText)">
+            <img src="images/go.png">
+        </button>
     </form>
 
     <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
@@ -39,7 +46,9 @@
     <!-- Page Content -->
     <div class="container">
         <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->
-        <div ng-if="productos == null">
+        <div ng-if="productos == null" class="homePromotional">
+            <img src="images/queSeTeAntoja.png" class="promotionalText">
+            <img src="images/logo.png" class="logo">
         </div>
 
         <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->

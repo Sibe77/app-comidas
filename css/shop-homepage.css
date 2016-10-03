@@ -130,6 +130,24 @@ body::after {
     top: -45px; 
 }
 
+button img {
+  width: 25px;
+}
+
+.homePromotional .promotionalText {
+    width: 90vw;
+    position: absolute;
+    top: 30vh;
+    left: 5vw;
+}
+
+.homePromotional .logo {
+    width: 50vw;
+    position: absolute;
+    bottom: 31px;
+    left: 25vw;
+}
+
 .field #searchterm{
     width: 0;
 }

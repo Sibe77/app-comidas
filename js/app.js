@@ -49,6 +49,10 @@ myApp.controller('appController', ['$scope', function($scope) {
 		}
 	}
 
+	$scope.goToHome = function() {
+		// TBD
+	}
+
 	$scope.filter = function(filter) {
 		$scope.productos = [];
 		var matches = [];
