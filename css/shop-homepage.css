@@ -159,6 +159,20 @@ button img {
   border:none;
 }
 
+.homePromotional .promotionalText {
+    width: 90vw;
+    position: absolute;
+    top: 25vh;
+    left: 5vw;
+}
+
+.homePromotional .logo {
+    width: 50vw;
+    position: absolute;
+    bottom: 25vh;
+    left: 25vw;
+}
+
 footer {
     color: #eee;
 }
@@ -167,20 +181,6 @@ footer {
 @media only screen and (min-width:480px) and (max-width: 767px)  {
     body {
         background-color: #D4D4D4;
-    }
-
-    .homePromotional .promotionalText {
-        width: 90vw;
-        position: absolute;
-        top: 25vh;
-        left: 5vw;
-    }
-
-    .homePromotional .logo {
-        width: 50vw;
-        position: absolute;
-        bottom: 25vh;
-        left: 25vw;
     }
 }
 
