@@ -161,16 +161,12 @@ button img {
 
 .homePromotional .promotionalText {
     width: 90vw;
-    position: absolute;
-    top: 25vh;
-    left: 5vw;
+    margin: 15vh 0;
 }
 
 .homePromotional .logo {
-    width: 50vw;
-    position: absolute;
-    bottom: 15vh;
-    left: 25vw;
+    width: 48vw;
+    margin: 0 22vw;
 }
 
 footer {
