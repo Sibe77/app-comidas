@@ -65,7 +65,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 		var outputWords = [];
 
 		// Here we write those words that we need to ignore when performing the search
-		var commonWords = ["a","de"];
+		var commonWords = ["de","la","que","el","en","y","a","los","del","las"];
 
 		var searchedWords = searchedText.split(" ");
 
