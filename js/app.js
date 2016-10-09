@@ -1,10 +1,17 @@
 var myApp = angular.module('myApp',[]);
 
 myApp.controller('appController', ['$scope', function($scope) {
-	var allProducts;
-	$scope.productos;
+	var allProducts; // Gotten from getProductsFromService();
+	var allClients; // Gotten from getClientsFromService();
+
+	$scope.clientsShown;
 
 	function init () {
+		getProductsFromService();
+		getClientsFromService();
+	}
+
+	function getProductsFromService () {
 		$.ajax({
 			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
 			headers: {
@@ -13,7 +20,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 			},
 			success: function (productsData) {
 				allProducts = productsData;
-				getClientsFromService();
 			},
 			error: function (error) {
 				console.log('error', error);
@@ -29,7 +35,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
 			},
 			success: function (clientsData) {
-				mergeClients(clientsData, allProducts);
+				allClients = clientsData;
 			},
 			error: function (error) {
 				console.log('error', error);
@@ -37,28 +43,18 @@ myApp.controller('appController', ['$scope', function($scope) {
 		});
 	};
 
-	function mergeClients(clients, products)
-	{
-		for (var product in products) {
-			var productClientID = products[product].cliente[0].id;
-			for (var client in clients) {
-				if (clients[client].id === productClientID) {
-					products[product].cliente = clients[client];
-				}
-			}
-		}
-	}
-
 	$scope.goToHome = function() {
 		// TBD
 	}
 
 	$scope.filter = function(filter) {
-		$scope.productos = [];
+		$scope.clientsShown = [];
 
 		var searchedWords = getWordsToSearch(filter);
 
-		$scope.productos = getProductMatches(searchedWords);
+		$scope.clientsShown = getClientMatches(searchedWords);
+		console.log($scope.clientsShown);
+		console.log($scope.clientsShown.length);
 	}
 
 	function getWordsToSearch(searchedText) {
@@ -85,8 +81,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 		return outputWords;
 	}
 
-	function getProductMatches (searchedWords) {
-		var matches = [];
+	function getClientMatches (searchedWords) {
 		var clientList = [];
 
 		for (var product in allProducts) {
@@ -101,17 +96,31 @@ myApp.controller('appController', ['$scope', function($scope) {
 			}
 
 			if (matchesAllProductWords) {
-				if (!(allProducts[product].cliente.cliente in clientList)) {
-					clientList[allProducts[product].cliente.cliente] = {type: allProducts[product].cliente.cliente, products: []};
+				if (!(allProducts[product].cliente[0].cliente in clientList)) {
+					var currentClient = getClient(allProducts[product].cliente[0].id);
+					clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: []};
 				}
 
-		        clientList[allProducts[product].cliente.cliente].products.push(allProducts[product]);
-
-				matches.push(allProducts[product]);
+		        clientList[allProducts[product].cliente[0].cliente].matchedProducts.push(allProducts[product]);
 			}
 		}
-		console.log(clientList);
-		return matches;
+
+		var output = [];
+
+		for (var client in clientList) {
+			output.push(clientList[client]);
+		}
+
+		return output;
+	}
+
+	function getClient(clientID)
+	{
+		for (var client in allClients) {
+			if (allClients[client].id === clientID) {
+				return allClients[client];
+			}
+		}
 	}
 
 	init();

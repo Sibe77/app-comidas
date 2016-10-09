@@ -45,29 +45,31 @@
 
     <!-- Page Content -->
     <div class="container">
-        <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->
-        <div ng-if="productos == null" class="homePromotional">
+        <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
+        <div ng-if="clientsShown == null" class="homePromotional">
             <img src="images/queSeTeAntoja.png" class="promotionalText">
             <img src="images/logo.png" class="logo">
         </div>
 
-        <!-- Esto se muestra cuando no hay productos que coincidan con el criterio de la busqueda. -->
-        <div ng-if="productos != null && productos.length === 0">
+        <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
+        <div ng-if="clientsShown != null && clientsShown.length === 0">
         </div>
 
-        <div ng-repeat="producto in productos" class="col-sm-6 col-lg-4 col-md-6">
+        <div ng-repeat="clientShown in clientsShown" class="col-sm-6 col-lg-4 col-md-6">
             <div class="thumbnail">
-                <img ng-src="{{producto.cliente.imagen}}" alt="{{producto.cliente.cliente}}">
-                <div class="caption">
-                    <h4 class="pull-right">${{producto.precio}}</h4>
-                    <h4><p class="nombre" href="#">{{producto.producto}}</p>
+                <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
+
+                <div ng-repeat="product in clientShown.matchedProducts" class="caption">
+                    <h4 class="pull-right">${{product.precio}}</h4>
+                    <h4><p class="nombre" href="#">{{product.producto}}</p>
                     </h4>
-                    <p class="descripcion">{{producto.descripcion}}</p>
+                    <p class="descripcion">{{product.descripcion}}</p>
                 </div>
+
                 <div class="ratings">
-                    <p class="pull-right">{{producto.cliente.telefono}}</p>
+                    <p class="pull-right">{{clientShown.client.telefono}}</p>
                     <p class="cliente">
-                        {{producto.cliente.cliente}}
+                        {{clientShown.client.cliente}}
                     </p>
                 </div>
             </div>
