@@ -87,6 +87,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 	function getProductMatches (searchedWords) {
 		var matches = [];
+		var clientList = [];
 
 		for (var product in allProducts) {
 			var matchesAllProductWords = true;
@@ -100,10 +101,16 @@ myApp.controller('appController', ['$scope', function($scope) {
 			}
 
 			if (matchesAllProductWords) {
+				if (!(allProducts[product].cliente.cliente in clientList)) {
+					clientList[allProducts[product].cliente.cliente] = {type: allProducts[product].cliente.cliente, products: []};
+				}
+
+		        clientList[allProducts[product].cliente.cliente].products.push(allProducts[product]);
+
 				matches.push(allProducts[product]);
 			}
 		}
-
+		console.log(clientList);
 		return matches;
 	}
 
