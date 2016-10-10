@@ -36,7 +36,7 @@
 }
 
 .caption h4 {
-    color: #008066;
+    color: #f69323;
     font-weight: bold;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .ratings .cliente {
-    color: #008066;
+    color: #f69323;;
     font-weight: bold;
 }
 
@@ -189,6 +189,10 @@ footer {
     body {
         background-color: #D4D4D4;
     }
+
+    .caption h4, .ratings .cliente {
+      color: #f69323;
+    }
 }
 
 /* Tablets */
@@ -212,7 +216,7 @@ footer {
     }
 
     .matchedProducts {
-      min-height: 300px;
+      min-height: 222px;
     }
 
     .thumbnail {
@@ -227,10 +231,6 @@ footer {
       width: 250px;
       height: 250px;
       border: solid white;
-    }
-
-    .ratings p {
-      color: #f69323;
     }
 
     .ratings .cliente {
@@ -268,7 +268,7 @@ footer {
     }
 
     .matchedProducts {
-      min-height: 300px;
+      min-height: 223px;
     }
 
     .thumbnail {
@@ -283,10 +283,6 @@ footer {
       width: 250px;
       height: 250px;
       border: solid white;
-    }
-
-    .ratings p {
-      color: #f69323;
     }
 
     .ratings .cliente {
