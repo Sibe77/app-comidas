@@ -169,16 +169,6 @@ button img {
   border:none;
 }
 
-.homePromotional .promotionalText {
-    width: 90vw;
-    margin: 15vh 0;
-}
-
-.homePromotional .logo {
-    width: 48vw;
-    margin: 0 22vw;
-}
-
 footer {
     color: #eee;
 }
@@ -192,6 +182,16 @@ footer {
 
     .caption h4, .ratings .cliente {
       color: #f69323;
+    }
+
+    .homePromotional .promotionalText {
+        width: 90vw;
+        margin: 15vh 0;
+    }
+
+    .homePromotional .logo {
+        width: 48vw;
+        margin: 0 22vw;
     }
 }
 
@@ -256,15 +256,13 @@ footer {
         position: absolute;
         top: 25vh;
         left: 25vw;
-        display: none;
     }
 
     .homePromotional .logo {
         width: 20vw;
         position: absolute;
-        bottom: 25vh;
+        bottom: 10vh;
         left: 40vw;
-        display: none;
     }
 
     .matchedProducts {
