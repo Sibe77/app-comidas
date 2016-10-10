@@ -27,14 +27,21 @@
     border-radius: 4px;
 }
 
+.matchedProducts {
+  padding: 10px;
+}
+
 .caption {
     overflow: hidden;
 }
 
 .caption h4 {
-    white-space: nowrap;
     color: #008066;
     font-weight: bold;
+}
+
+.caption h4 p {
+    margin: 0;
 }
 
 .caption .nombre {
@@ -74,6 +81,10 @@
     padding: 0;
     border-radius: 0;
     box-shadow: -1px 0px 70px -7px black;
+}
+
+.thumbnail .caption {
+  padding: 0;
 }
 
 .thumbnail .caption-full {
@@ -174,14 +185,14 @@ footer {
 
 
 /* Celulares */
-@media only screen and (min-width:480px) and (max-width: 767px)  {
+@media only screen and (min-width:480px) and (max-width: 799px)  {
     body {
         background-color: #D4D4D4;
     }
 }
 
 /* Tablets */
-@media only screen and (min-width:768px) and (max-width: 1199px)  {
+@media only screen and (min-width:800px) and (max-width: 1199px)  {
     body {
         background-color: #313131;
     }
@@ -200,35 +211,30 @@ footer {
         left: 40vw;
     }
 
-    #wrapper {
-      width: 90%;
-      max-width: 1100px;
-      min-width: 800px;
-      margin: 50px auto;
+    .matchedProducts {
+      min-height: 300px;
     }
 
-    #columns {
-      -webkit-column-gap: 10px;
-      -webkit-column-fill: auto;
-      -moz-column-gap: 10px;
-      -moz-column-fill: auto;
-      column-gap: 15px;
-      column-fill: auto;
+    .thumbnail {
+      width: 70%;
+      float: right;
+      position: relative;
     }
 
-    .pin {
-      width: 95%;
-
-      display: inline-block;
-      -webkit-column-break-inside: avoid;
-      -moz-column-break-inside: avoid;
-      column-break-inside: avoid;
+    .thumbnail img {
+      position: absolute;
+      left: -300px;
+      width: 250px;
+      height: 250px;
+      border: solid white;
     }
 
-    #columns {
-      -webkit-column-count: 2;
-      -moz-column-count: 2;
-      column-count: 2;
+    .ratings p {
+      color: #f69323;
+    }
+
+    .ratings .cliente {
+      color: #f69323;
     }
 }
 
@@ -261,34 +267,29 @@ footer {
         display: none;
     }
 
-    #wrapper {
-      width: 90%;
-      max-width: 1100px;
-      min-width: 800px;
-      margin: 50px auto;
+    .matchedProducts {
+      min-height: 300px;
     }
 
-    #columns {
-      -webkit-column-gap: 10px;
-      -webkit-column-fill: auto;
-      -moz-column-gap: 10px;
-      -moz-column-fill: auto;
-      column-gap: 15px;
-      column-fill: auto;
+    .thumbnail {
+      width: 70%;
+      float: right;
+      position: relative;
     }
 
-    .pin {
-      width: 95%;
-
-      display: inline-block;
-      -webkit-column-break-inside: avoid;
-      -moz-column-break-inside: avoid;
-      column-break-inside: avoid;
+    .thumbnail img {
+      position: absolute;
+      left: -300px;
+      width: 250px;
+      height: 250px;
+      border: solid white;
     }
 
-    #columns {
-      -webkit-column-count: 3;
-      -moz-column-count: 3;
-      column-count: 3;
+    .ratings p {
+      color: #f69323;
+    }
+
+    .ratings .cliente {
+      color: #f69323;
     }
 }

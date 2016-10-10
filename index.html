@@ -54,18 +54,17 @@
         <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
         <div ng-if="clientsShown != null && clientsShown.length === 0">
         </div>
-
-        <div id="wrapper">
-            <div id="columns">
-                <div ng-repeat="clientShown in clientsShown" class="pin">
+                <div ng-repeat="clientShown in clientsShown">
                     <div class="thumbnail">
                         <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
 
-                        <div ng-repeat="product in clientShown.matchedProducts" class="caption">
-                            <h4 class="pull-right">${{product.precio}}</h4>
-                            <h4><p class="nombre" href="#">{{product.producto}}</p>
-                            </h4>
-                            <p class="descripcion">{{product.descripcion}}</p>
+                        <div class="matchedProducts">
+                            <div ng-repeat="product in clientShown.matchedProducts" class="caption">
+                                <h4 class="pull-right">${{product.precio}}</h4>
+                                <h4><p class="nombre" href="#">{{product.producto}}</p>
+                                </h4>
+                                <p class="descripcion">{{product.descripcion}}</p>
+                            </div>
                         </div>
 
                         <div class="ratings">
@@ -76,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
     </div>
