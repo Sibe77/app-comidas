@@ -60,6 +60,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 	function getWordsToSearch(searchedText) {
 		var outputWords = [];
 
+		// Here we remove the accents.
+        searchedText = accentsTidyAndLowercase(searchedText);
 		// Here we write those words that we need to ignore when performing the search
 		var commonWords = ["de","la","que","el","en","y","a","los","del","las"];
 
@@ -81,6 +83,16 @@ myApp.controller('appController', ['$scope', function($scope) {
 		return outputWords;
 	}
 
+	function accentsTidyAndLowercase(s) {
+	    var r=s.toLowerCase();
+	    r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
+	    r = r.replace(new RegExp("[èéêë]", 'g'),"e");
+	    r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
+	    r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
+	    r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
+	    return r;
+	};
+
 	function getClientMatches (searchedWords) {
 		var clientList = [];
 
@@ -89,7 +101,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 			var matchesAllClientWords = true;
 
 			for (var searchedWord in searchedWords) {
-				var searchQuery = new RegExp(searchedWords[searchedWord], "i");
+				var searchQuery = new RegExp("\\b"+searchedWords[searchedWord], "i");
 				if (allProducts[product].producto.search(searchQuery) == -1) {
 					matchesAllProductWords = false;
 				}
