@@ -37,7 +37,7 @@
 
 .caption h4 {
     color: #f69323;
-    font-weight: bold;
+    margin-bottom: 0;
 }
 
 .caption h4 p {
@@ -146,13 +146,13 @@ button img {
 
 .field #searchterm{
     width: 0;
+    height: 47px;
 }
 
 .field>input[type=text],
 .field>button {
   display:block;
   font-family: 'Baloo Tamma';
-  font:1em 'Baloo Tamma';
 }
 
 .field>input[type=text] {
@@ -173,6 +173,10 @@ footer {
     color: #eee;
 }
 
+.ratings .cliente, .ratings .pull-right, .caption .pull-right{
+  font-family: 'Baloo Tamma';
+  font-weight: lighter;
+}
 
 /* Celulares */
 @media only screen and (min-width:480px) and (max-width: 799px)  {
@@ -216,7 +220,7 @@ footer {
     }
 
     .matchedProducts {
-      min-height: 222px;
+      min-height: 210px;
     }
 
     .thumbnail {
@@ -235,6 +239,10 @@ footer {
 
     .ratings .cliente {
       color: #f69323;
+    }
+
+    .thumbnail .caption {
+      border-bottom: dashed 1px lightgray;
     }
 }
 
@@ -259,10 +267,10 @@ footer {
     }
 
     .homePromotional .logo {
-        width: 20vw;
+        width: 12vw;
         position: absolute;
         bottom: 10vh;
-        left: 40vw;
+        left: 44vw;
     }
 
     .matchedProducts {
@@ -285,5 +293,12 @@ footer {
 
     .ratings .cliente {
       color: #f69323;
+    }
+
+    .thumbnail .caption {
+      border-bottom: dashed 1px lightgray;
+    }
+    .thumbnail .caption:last-child {
+      border-bottom: 0;
     }
 }
