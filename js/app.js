@@ -4,11 +4,21 @@ myApp.controller('appController', ['$scope', function($scope) {
 	var allProducts; // Gotten from getProductsFromService();
 	var allClients; // Gotten from getClientsFromService();
 
+	$scope.isMobile;
 	$scope.clientsShown;
 
 	function init () {
+		$scope.isMobile = checkIfItIsMobile();
 		getProductsFromService();
 		getClientsFromService();
+	}
+
+	function checkIfItIsMobile() {
+	   if(window.innerWidth <= 800) {
+	     return true;
+	   } else {
+	     return false;
+	   }
 	}
 
 	function getProductsFromService () {

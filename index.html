@@ -45,8 +45,8 @@
 
     <!-- Page Content -->
     <div class="container">
-        <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
-        <div ng-if="clientsShown == null" class="homePromotional">
+        <!-- Home Page. -->
+        <div ng-if="clientsShown == null && !isMobile" class="homePromotional">
             <img src="images/queSeTeAntoja.png" class="promotionalText">
             <img src="images/logo.png" class="logo">
         </div>
