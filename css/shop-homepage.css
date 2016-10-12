@@ -173,9 +173,27 @@ footer {
     color: #eee;
 }
 
-.ratings .cliente, .ratings .pull-right, .caption .pull-right{
+.ratings .cliente, .ratings .pull-right, .caption .pull-right, .noResultsHeader{
   font-family: 'Baloo Tamma';
   font-weight: lighter;
+}
+
+.noResultsHeader{
+  color: #f69323;
+  text-align: center;
+}
+
+.homePromotional .promotionalText {
+    width: 90vw;
+    margin: 15vh 0;
+}
+
+.logo {
+    width: 200px;
+    margin: 0 22vw;
+    bottom: 10px;
+    left: ~calc(50vw - 100px);
+    display: none;
 }
 
 /* Celulares */
@@ -186,16 +204,6 @@ footer {
 
     .caption h4, .ratings .cliente {
       color: #f69323;
-    }
-
-    .homePromotional .promotionalText {
-        width: 90vw;
-        margin: 15vh 0;
-    }
-
-    .homePromotional .logo {
-        width: 48vw;
-        margin: 0 22vw;
     }
 }
 
@@ -243,6 +251,9 @@ footer {
 
     .thumbnail .caption {
       border-bottom: dashed 1px lightgray;
+    }
+    .thumbnail .caption:last-child {
+      border-bottom: 0;
     }
 }
 

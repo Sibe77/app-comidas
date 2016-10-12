@@ -6,6 +6,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 	$scope.isMobile;
 	$scope.clientsShown;
+	$scope.noResults;
 
 	function init () {
 		$scope.isMobile = checkIfItIsMobile();
@@ -58,13 +59,18 @@ myApp.controller('appController', ['$scope', function($scope) {
 	}
 
 	$scope.filter = function(filter) {
+		$scope.noResults = false;
+
 		$scope.clientsShown = [];
 
 		var searchedWords = getWordsToSearch(filter);
 
 		$scope.clientsShown = getClientMatches(searchedWords);
-		console.log($scope.clientsShown);
+
 		console.log($scope.clientsShown.length);
+		if ($scope.clientsShown.length === 0){
+			$scope.noResults = true;
+		}
 	}
 
 	function getWordsToSearch(searchedText) {

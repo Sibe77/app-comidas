@@ -46,13 +46,15 @@
     <!-- Page Content -->
     <div class="container">
         <!-- Home Page. -->
-        <div ng-if="clientsShown == null && !isMobile" class="homePromotional">
+        <div ng-if="clientsShown == null" class="homePromotional">
             <img src="images/queSeTeAntoja.png" class="promotionalText">
             <img src="images/logo.png" class="logo">
         </div>
 
         <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
-        <div ng-if="clientsShown != null && clientsShown.length === 0">
+        <div ng-if="noResults">
+            <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h1>
+            <img src="images/logo.png" class="logo">
         </div>
                 <div ng-repeat="clientShown in clientsShown">
                     <div class="thumbnail">
