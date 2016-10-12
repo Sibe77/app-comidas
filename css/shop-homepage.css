@@ -55,26 +55,27 @@
     color: #002448;
 }
 
-.ratings .cliente {
+.cliente {
     color: #f69323;;
     font-weight: bold;
 }
 
-.ratings p {
-    color: #002448;
+.contacto {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.contacto p {
+    color: #ffffff;
     font-size: 11pt;
-    font-weight: bold;
+    font-weight: lighter;
+    font-family: baloo tamma;
 }
 
 .thumbnail img {
     width: 100%;
     height: 260px;
-}
-
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
 }
 
 .thumbnail {
@@ -173,9 +174,13 @@ footer {
     color: #eee;
 }
 
-.ratings .cliente, .ratings .pull-right, .caption .pull-right, .noResultsHeader{
+.cliente, .contacto .direccion .contacto .pull-right, .caption .pull-right, .noResultsHeader{
   font-family: 'Baloo Tamma';
   font-weight: lighter;
+}
+
+.cliente {
+  text-align: center;
 }
 
 .noResultsHeader{
@@ -197,13 +202,20 @@ footer {
 }
 
 /* Celulares */
-@media only screen and (min-width:480px) and (max-width: 799px)  {
+@media only screen and (max-width: 799px)  {
     body {
         background-color: #D4D4D4;
     }
 
-    .caption h4, .ratings .cliente {
+    .caption h4, .cliente {
       color: #f69323;
+    }
+
+    .contacto {
+      background-color: #f69323;
+      width: 108%;
+      position: relative;
+      left: -4%;
     }
 }
 
@@ -245,7 +257,7 @@ footer {
       border: solid #f69323;
     }
 
-    .ratings .cliente {
+    .cliente {
       color: #f69323;
     }
 
@@ -285,25 +297,31 @@ footer {
     }
 
     .matchedProducts {
-      min-height: 223px;
+      min-height: 250px;
     }
 
     .thumbnail {
       width: 70%;
       float: right;
       position: relative;
+      margin-bottom: 35px;
     }
 
     .thumbnail img {
       position: absolute;
       left: -300px;
+      top: 5px;
       width: 250px;
       height: 250px;
       border: solid #f69323;
     }
 
-    .ratings .cliente {
+    .cliente {
       color: #f69323;
+      position: relative;
+      left: -72%;
+      top: 260px;
+      margin-bottom: -35px;
     }
 
     .thumbnail .caption {
@@ -311,5 +329,9 @@ footer {
     }
     .thumbnail .caption:last-child {
       border-bottom: 0;
+    }
+
+    .contacto p {
+      color: #002448;
     }
 }

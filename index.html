@@ -58,6 +58,10 @@
         </div>
                 <div ng-repeat="clientShown in clientsShown">
                     <div class="thumbnail">
+                        <p ng-if="!isMobile" class="cliente">
+                            {{clientShown.client.cliente}}
+                        </p>
+
                         <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
 
                         <div class="matchedProducts">
@@ -69,13 +73,16 @@
                             </div>
                         </div>
 
-                        <div class="ratings">
+                        <div class="contacto">
                             <p class="pull-right">{{clientShown.client.telefono}}</p>
-                            <p class="cliente">
-                                {{clientShown.client.cliente}}
+                            <p class="direccion">
+                                {{clientShown.client.direccion}}
                             </p>
                         </div>
-                    </div>
+
+                        <p ng-if="isMobile" class="cliente">
+                            {{clientShown.client.cliente}}
+                        </p>
                 </div>
         </div>
 
