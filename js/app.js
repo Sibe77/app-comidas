@@ -112,28 +112,30 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		for (var product in allProducts) {
 			var matchesAllProductWords = true;
-			var matchesAllClientWords = true;
+			var clientWordsMatched = 0;
 
 			var currentProduct = accentsTidyAndLowercase(allProducts[product].producto);
-			console.log();
+
 			if (allProducts[product].cliente[0].cliente != undefined) {
 				var currentClient = accentsTidyAndLowercase(allProducts[product].cliente[0].cliente);
+				var currentClientNumberOfWords = allProducts[product].cliente[0].cliente.split(" ").length;
 			}
 
 			for (var searchedWord in searchedWords) {
 				var searchQuery = new RegExp("\\b"+searchedWords[searchedWord], "i");
+
 				if (currentProduct.search(searchQuery) == -1) {
 					matchesAllProductWords = false;
 				}
 				if (currentClient != undefined ) {
-					if (currentClient.search(searchQuery) == -1)
+					if (currentClient.search(searchQuery) != -1)
 					{
-						matchesAllClientWords = false;
+						clientWordsMatched++;
 					}
 				}
 			}
 
-			if (matchesAllProductWords || matchesAllClientWords) {
+			if (matchesAllProductWords || clientWordsMatched === currentClientNumberOfWords) {
 				if (!(allProducts[product].cliente[0].cliente in clientList)) {
 					var currentClient = getClient(allProducts[product].cliente[0].id);
 					clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: []};
