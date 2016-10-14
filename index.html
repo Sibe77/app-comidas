@@ -27,7 +27,7 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="appController">
+<body ng-app="myApp" ng-controller="appController" ng-class="!productsLoaded || !clientsLoaded ? 'loading' : '' ">
     <div ng-if="!productsLoaded || !clientsLoaded" class="loadingText">
         <h2>CARGANDO...</h2>
     </div>
