@@ -67,7 +67,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 	}
 
 	$scope.filter = function(filter) {
-		$scope.noResults = false;
+		$scope.noResults = true;
 
 		$scope.clientsShown = [];
 
@@ -75,9 +75,11 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		$scope.clientsShown = getClientAndProductMatches(searchedWords);
 
+
+
 		console.log($scope.clientsShown.length);
-		if ($scope.clientsShown.length === 0){
-			$scope.noResults = true;
+		if ($scope.clientsShown.length > 0){
+			$scope.noResults = false;
 		}
 	}
 

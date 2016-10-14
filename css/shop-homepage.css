@@ -207,7 +207,7 @@ footer {
 /* Celulares */
 @media only screen and (max-width: 799px)  {
     body {
-        background-color: #D4D4D4;
+        background-color: #E6E6E6;
     }
 
     .caption h4, .cliente {
