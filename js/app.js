@@ -102,7 +102,12 @@ myApp.controller('appController', ['$scope', function($scope) {
 			}
 
 			if (!isCommonWord) {
-				outputWords.push(searchedWords[searchedWord]);
+				var word = searchedWords[searchedWord];
+				// Here we remove the "s" letter at the end of the word so can match both plural and singular
+					if (word.slice(-1) === "s") {
+						word = word.slice(0,-1);
+					}
+				outputWords.push(word);
 			}
 		}
 
