@@ -197,15 +197,16 @@ footer {
 
 .homePromotional .promotionalText {
     width: 90vw;
-    margin: 15vh 0;
+    position: absolute;
+    left: 5vw;
+    bottom: 60vh;
 }
 
 .logo {
-    width: 200px;
-    margin: 0 22vw;
-    bottom: 10px;
-    left: ~calc(50vw - 100px);
-    display: none;
+    width: 40vw;
+    bottom: 9vh;
+    left: 30vw;
+    position: absolute;
 }
 
 /* Celulares */
@@ -242,14 +243,14 @@ footer {
     .homePromotional .promotionalText {
         width: 50vw;
         position: absolute;
-        top: 25vh;
+        top: 32vh;
         left: 25vw;
     }
 
     .homePromotional .logo {
         width: 12vw;
         position: absolute;
-        bottom: 10vh;
+        bottom: 7vh;
         left: 44vw;
     }
 
