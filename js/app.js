@@ -7,6 +7,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 	$scope.isMobile;
 	$scope.clientsShown;
 	$scope.noResults;
+	$scope.productsLoaded;
+	$scope.clientsLoaded;
 
 	function init () {
 		$scope.isMobile = checkIfItIsMobile();
@@ -30,7 +32,10 @@ myApp.controller('appController', ['$scope', function($scope) {
 				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
 			},
 			success: function (productsData) {
-				allProducts = productsData;
+				$scope.$apply(function(){
+					allProducts = productsData;
+					$scope.productsLoaded = true;
+				});
 			},
 			error: function (error) {
 				console.log('error', error);
@@ -46,7 +51,10 @@ myApp.controller('appController', ['$scope', function($scope) {
 				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
 			},
 			success: function (clientsData) {
-				allClients = clientsData;
+				$scope.$apply(function(){
+					allClients = clientsData;
+					$scope.clientsLoaded = true;
+				});
 			},
 			error: function (error) {
 				console.log('error', error);

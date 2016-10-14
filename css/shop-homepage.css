@@ -93,8 +93,6 @@
     color: #333;
 }
 
-
-
 .headerTitle {
     margin: 30px;
     color: #5f96c6;
@@ -174,9 +172,14 @@ footer {
     color: #eee;
 }
 
-.cliente, .contacto .direccion .contacto .pull-right, .caption .pull-right, .noResultsHeader{
+.cliente, .contacto .direccion .contacto .pull-right, .caption .pull-right, .noResultsHeader, .loadingText{
   font-family: 'Baloo Tamma';
   font-weight: lighter;
+}
+
+.loadingText {
+  color: #f69323;
+  text-align: center;
 }
 
 .cliente {
