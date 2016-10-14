@@ -213,64 +213,14 @@ footer {
 
     .contacto {
       background-color: #f69323;
-      width: 108%;
+      width: 104%;
       position: relative;
-      left: -4%;
+      left: -2%;
     }
 }
 
-/* Tablets */
-@media only screen and (min-width:800px) and (max-width: 1199px)  {
-    body {
-        background-color: #313131;
-    }
-
-    .homePromotional .promotionalText {
-        width: 50vw;
-        position: absolute;
-        top: 25vh;
-        left: 25vw;
-    }
-
-    .homePromotional .logo {
-        width: 20vw;
-        position: absolute;
-        bottom: 25vh;
-        left: 40vw;
-    }
-
-    .matchedProducts {
-      min-height: 210px;
-    }
-
-    .thumbnail {
-      width: 70%;
-      float: right;
-      position: relative;
-    }
-
-    .thumbnail img {
-      position: absolute;
-      left: -300px;
-      width: 250px;
-      height: 250px;
-      border: solid #f69323;
-    }
-
-    .cliente {
-      color: #f69323;
-    }
-
-    .thumbnail .caption {
-      border-bottom: dashed 1px lightgray;
-    }
-    .thumbnail .caption:last-child {
-      border-bottom: 0;
-    }
-}
-
-/* Desktop */
-@media only screen and (min-width: 1200px)  {
+/* Desktop y tablets */
+@media only screen and (min-width:800px) {
     body {
         padding-top: 85px;
         background-color: #313131;
