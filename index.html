@@ -30,6 +30,9 @@
 <body ng-app="myApp" ng-controller="appController" ng-class="!productsLoaded || !clientsLoaded ? 'loading' : '' ">
     <div ng-if="!productsLoaded || !clientsLoaded" class="loadingText">
         <h2>CARGANDO...</h2>
+        <div class="homePromotional">
+            <img src="images/logo.png" class="logo">
+        </div>
     </div>
     <div ng-if="productsLoaded && clientsLoaded" ng-cloak>
         <form class="field" id="searchform" autocomplete="off">
