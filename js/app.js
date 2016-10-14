@@ -65,7 +65,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		var searchedWords = getWordsToSearch(filter);
 
-		$scope.clientsShown = getClientMatches(searchedWords);
+		$scope.clientsShown = getClientAndProductMatches(searchedWords);
 
 		console.log($scope.clientsShown.length);
 		if ($scope.clientsShown.length === 0){
@@ -99,31 +99,33 @@ myApp.controller('appController', ['$scope', function($scope) {
 		return outputWords;
 	}
 
-	function accentsTidyAndLowercase(s) {
-	    var r=s.toLowerCase();
-	    r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
-	    r = r.replace(new RegExp("[èéêë]", 'g'),"e");
-	    r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
-	    r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
-	    r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
-	    return r;
-	};
-
-	function getClientMatches (searchedWords) {
+	function getClientAndProductMatches (searchedWords) {
 		var clientList = [];
 
 		for (var product in allProducts) {
 			var matchesAllProductWords = true;
 			var matchesAllClientWords = true;
 
+			var currentProduct = accentsTidyAndLowercase(allProducts[product].producto);
+			console.log();
+			if (allProducts[product].cliente[0].cliente != undefined) {
+				var currentClient = accentsTidyAndLowercase(allProducts[product].cliente[0].cliente);
+			}
+
 			for (var searchedWord in searchedWords) {
 				var searchQuery = new RegExp("\\b"+searchedWords[searchedWord], "i");
-				if (allProducts[product].producto.search(searchQuery) == -1) {
+				if (currentProduct.search(searchQuery) == -1) {
 					matchesAllProductWords = false;
+				}
+				if (currentClient != undefined ) {
+					if (currentClient.search(searchQuery) == -1)
+					{
+						matchesAllClientWords = false;
+					}
 				}
 			}
 
-			if (matchesAllProductWords) {
+			if (matchesAllProductWords || matchesAllClientWords) {
 				if (!(allProducts[product].cliente[0].cliente in clientList)) {
 					var currentClient = getClient(allProducts[product].cliente[0].id);
 					clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: []};
@@ -141,6 +143,16 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		return output;
 	}
+
+	function accentsTidyAndLowercase(s) {
+	    var r=s.toLowerCase();
+	    r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
+	    r = r.replace(new RegExp("[èéêë]", 'g'),"e");
+	    r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
+	    r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
+	    r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
+	    return r;
+	};
 
 	function getClient(clientID)
 	{
