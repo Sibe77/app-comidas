@@ -51,6 +51,7 @@
                 <img src="images/home.png">
             </button>
         -->
+            <!-- Este input envía datos sobre la busqueda a analytics cuando pierde focus -->
             <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" onblur="ga('send', 'pageview', 'search?searchText=' + this.value);" />
             <button type="submit" id="search" ng-click="filter(searchText)">
                 <img src="images/go.png">
