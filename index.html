@@ -52,7 +52,8 @@
             </button>
         -->
             <!-- Este input envía datos sobre la busqueda a analytics cuando pierde focus -->
-            <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" onblur="ga('send', 'pageview', 'search?searchText=' + this.value);" />
+            <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" ng-focus="searchFieldFocus()" ng-blur="searchFieldBlur()" />
+
             <button type="submit" id="search" ng-click="filter(searchText)">
                 <img src="images/go.png">
             </button>
@@ -61,7 +62,7 @@
         <!-- Page Content -->
         <div class="container">
             <!-- Home Page. -->
-            <div ng-if="clientsShown == null" class="homePromotional">
+            <div ng-if="clientsShown == null" class="homePromotional" ng-class="isSearchBoxFocused ? 'searchBoxFocus' : ''">
                 <img src="images/queSeTeAntoja.png" class="promotionalText">
                 <img src="images/logo.png" class="logo">
             </div>

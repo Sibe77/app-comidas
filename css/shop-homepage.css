@@ -225,6 +225,13 @@ footer {
       position: relative;
       left: -2%;
     }
+
+    .homePromotional.searchBoxFocus .promotionalText{
+        top: 40vh;
+    }
+    .homePromotional.searchBoxFocus .logo{
+        display: none;
+    }
 }
 
 /* Desktop y tablets */

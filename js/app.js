@@ -9,6 +9,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 	$scope.noResults;
 	$scope.productsLoaded;
 	$scope.clientsLoaded;
+	$scope.isSearchBoxFocused;
 
 	function init () {
 		$scope.isMobile = checkIfItIsMobile();
@@ -80,6 +81,16 @@ myApp.controller('appController', ['$scope', function($scope) {
 		if ($scope.clientsShown.length > 0){
 			$scope.noResults = false;
 		}
+	}
+
+	$scope.searchFieldFocus = function () {
+		$scope.isSearchBoxFocused = true;
+	}
+
+	$scope.searchFieldBlur = function () {
+		// Analytics
+		ga('send', 'pageview', 'search?searchText=' + this.value);
+		$scope.isSearchBoxFocused = false;
 	}
 
 	function getWordsToSearch(searchedText) {
