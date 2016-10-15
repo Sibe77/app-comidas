@@ -83,6 +83,10 @@ myApp.controller('appController', ['$scope', function($scope) {
 		}
 	}
 
+	$scope.logoPressed = function () {
+		document.getElementById('searchterm').focus();
+	}
+
 	$scope.searchFieldFocus = function () {
 		$scope.isSearchBoxFocused = true;
 	}
