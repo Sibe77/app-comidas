@@ -67,6 +67,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 	}
 
 	$scope.filter = function(filter) {
+		document.getElementById('searchterm').blur();
+
 		$scope.noResults = true;
 
 		$scope.clientsShown = [];
