@@ -37,14 +37,14 @@
     </script>
     </head>
 
-<body ng-app="myApp" ng-controller="appController" ng-class="!productsLoaded || !clientsLoaded ? 'loading' : '' ">
-    <div ng-if="!productsLoaded || !clientsLoaded" class="loadingText">
+<body ng-app="myApp" ng-controller="appController" ng-class="!productsLoaded || !clientsLoaded || !hoursLoaded ? 'loading' : '' ">
+    <div ng-if="!productsLoaded || !clientsLoaded || !hoursLoaded" class="loadingText">
         <h2>CARGANDO...</h2>
         <div class="homePromotional">
             <img src="images/logo.png" class="logo">
         </div>
     </div>
-    <div ng-if="productsLoaded && clientsLoaded" ng-cloak>
+    <div ng-if="productsLoaded && clientsLoaded && hoursLoaded" ng-cloak>
         <form class="field" id="searchform" autocomplete="off">
         <!-- 
             <button type="submit" id="home" ng-click="goToHome()">
@@ -64,13 +64,13 @@
             <!-- Home Page. -->
             <div ng-if="clientsShown == null" class="homePromotional" ng-class="isSearchBoxFocused ? 'searchBoxFocus' : ''">
                 <img src="images/queSeTeAntoja.png" class="promotionalText">
-                <img src="images/logo.png" class="logo">
+                <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
 
             <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
             <div ng-if="noResults">
                 <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h1>
-                <img src="images/logo.png" class="logo">
+                <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
                     <div ng-repeat="clientShown in clientsShown">
                         <div class="thumbnail">

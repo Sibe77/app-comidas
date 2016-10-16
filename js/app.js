@@ -3,18 +3,21 @@ var myApp = angular.module('myApp',[]);
 myApp.controller('appController', ['$scope', function($scope) {
 	var allProducts; // Gotten from getProductsFromService();
 	var allClients; // Gotten from getClientsFromService();
+	var allHours; // Gotten from getHoursFromService();
 
 	$scope.isMobile;
 	$scope.clientsShown;
 	$scope.noResults;
 	$scope.productsLoaded;
 	$scope.clientsLoaded;
+	$scope.hoursLoaded;
 	$scope.isSearchBoxFocused;
 
 	function init () {
 		$scope.isMobile = checkIfItIsMobile();
 		getProductsFromService();
 		getClientsFromService();
+		getHoursFromService();
 	}
 
 	function checkIfItIsMobile() {
@@ -63,6 +66,25 @@ myApp.controller('appController', ['$scope', function($scope) {
 		});
 	};
 
+	function getHoursFromService() {
+		$.ajax({
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/horarios',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (hoursData) {
+				$scope.$apply(function(){
+					allHours = hoursData;
+					$scope.hoursLoaded = true;
+				});
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
+		});
+	};
+
 	$scope.goToHome = function() {
 		// TBD
 	}
@@ -77,10 +99,15 @@ myApp.controller('appController', ['$scope', function($scope) {
 		var searchedWords = getWordsToSearch(filter);
 
 		$scope.clientsShown = getClientAndProductMatches(searchedWords);
+		console.log("clientsShown", $scope.clientsShown);
 
 		if ($scope.clientsShown.length > 0){
 			$scope.noResults = false;
 		}
+	}
+
+	$scope.logoPressed = function () {
+		document.getElementById('searchterm').focus();
 	}
 
 	$scope.searchFieldFocus = function () {
@@ -153,9 +180,20 @@ myApp.controller('appController', ['$scope', function($scope) {
 			}
 
 			if (matchesAllProductWords || clientWordsMatched === currentClientNumberOfWords) {
+				// Si el cliente no existe todavía en la lista que estamos creando
+				// Lo creamos y le asignamos sus productos (aquellos que matchean),
+				// y le asignamos sus correspondientes horarios de apertura y cierre.
 				if (!(allProducts[product].cliente[0].cliente in clientList)) {
 					var currentClient = getClient(allProducts[product].cliente[0].id);
-					clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: []};
+					var hours = [];
+					// Agregamos las horas al correspondiente cliente
+					for (var hour in allHours) {
+						if (allHours[hour].cliente[0].cliente === allProducts[product].cliente[0].cliente) {
+							hours.push(allHours[hour]);
+						}
+					}
+
+					clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: [], hours: hours};
 				}
 
 		        clientList[allProducts[product].cliente[0].cliente].matchedProducts.push(allProducts[product]);
