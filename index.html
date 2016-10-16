@@ -80,6 +80,11 @@
 
                             <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
 
+                            <div class="openClosedSign">
+                                <h3 ng-if="isOpen(clientShown)">Abierto</h3>
+                                <h3 ng-if="!isOpen(clientShown)">Cerrado</h3>
+                            </div>
+
                             <div class="matchedProducts">
                                 <div ng-repeat="product in clientShown.matchedProducts" class="caption">
                                     <h4 class="pull-right">${{product.precio}}</h4>

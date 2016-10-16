@@ -4,6 +4,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 	var allProducts; // Gotten from getProductsFromService();
 	var allClients; // Gotten from getClientsFromService();
 	var allHours; // Gotten from getHoursFromService();
+	var date = new Date();
 
 	$scope.isMobile;
 	$scope.clientsShown;
@@ -118,6 +119,86 @@ myApp.controller('appController', ['$scope', function($scope) {
 		// Analytics
 		ga('send', 'pageview', 'search?searchText=' + this.value);
 		$scope.isSearchBoxFocused = false;
+	}
+
+	$scope.isOpen = function (cliente) {
+		var open = false;
+		var currentHour = date.getHours();
+		var currentMinutes = date.getMinutes();
+
+		var getDayOfWeek = function () {
+			if (date.getDay() === 0) {
+				return "Domingo";
+			}
+			else if (date.getDay() === 1) {
+				return "Lunes";
+			}
+			else if (date.getDay() === 2) {
+				return "Martes";
+			}
+			else if (date.getDay() === 3) {
+				return "Miercoles";
+			}
+			else if (date.getDay() === 4) {
+				return "Jueves";
+			}
+			else if (date.getDay() === 5) {
+				return "Viernes";
+			}
+			else if (date.getDay() === 6) {
+				return "Sabado";
+			}
+		};
+
+		var checkTimeRange = function (startHour, startMinutes, endHour, endMinutes) {
+			var checkForMinutes = function() {
+				if (currentHour === startHour) {
+					if (currentMinutes >= startMinutes) {
+						return true;
+					}
+				} else if (currentHour === endHour) {
+					if (currentMinutes < endMinutes) {
+						return true;
+					}
+				} else {
+					return true;
+				}
+			}
+
+			if (startHour != null && endHour != null) {	
+				if (endHour === startHour) {
+					return true;
+				} else if (endHour < startHour) {
+					if (currentHour >= startHour || currentHour <= endHour)
+					{
+						if(checkForMinutes()) {
+							return true;
+						}
+					}
+				} else { // startHour < endHour
+					if (currentHour >= startHour || currentHour <= endHour) {
+						if(checkForMinutes()) {
+							return true;
+						}
+					}
+				}
+			}
+
+			return false;
+		};
+
+		for (var horario in cliente.hours) {
+			if (getDayOfWeek() === cliente.hours[horario].dia) {
+				var openHour = Number(cliente.hours[horario].abre.split(":")[0]);
+				var openMinutes = Number(cliente.hours[horario].abre.split(":")[1]);
+				var closeHour = Number(cliente.hours[horario].cierra.split(":")[0]);
+				var closeMinutes = Number(cliente.hours[horario].cierra.split(":")[1]);
+
+				open = checkTimeRange(openHour, openMinutes, closeHour, closeMinutes);
+			}
+		}
+
+		return open;
 	}
 
 	function getWordsToSearch(searchedText) {
