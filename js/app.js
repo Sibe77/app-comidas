@@ -21,75 +21,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 		getHoursFromService();
 	}
 
-	function checkIfItIsMobile() {
-	   if(window.innerWidth <= 800) {
-	     return true;
-	   } else {
-	     return false;
-	   }
-	}
-
-	function getProductsFromService () {
-		$.ajax({
-			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
-			headers: {
-				'Accept': 'application/json',
-				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
-			},
-			success: function (productsData) {
-				$scope.$apply(function(){
-					allProducts = productsData;
-					$scope.productsLoaded = true;
-				});
-			},
-			error: function (error) {
-				console.log('error', error);
-			}
-		});
-	}
-
-	function getClientsFromService() {
-		$.ajax({
-			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/clientes',
-			headers: {
-				'Accept': 'application/json',
-				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
-			},
-			success: function (clientsData) {
-				$scope.$apply(function(){
-					allClients = clientsData;
-					$scope.clientsLoaded = true;
-				});
-			},
-			error: function (error) {
-				console.log('error', error);
-			}
-		});
-	};
-
-	function getHoursFromService() {
-		$.ajax({
-			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/horarios',
-			headers: {
-				'Accept': 'application/json',
-				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
-			},
-			success: function (hoursData) {
-				$scope.$apply(function(){
-					allHours = hoursData;
-					$scope.hoursLoaded = true;
-				});
-			},
-			error: function (error) {
-				console.log('error', error);
-			}
-		});
-	};
-
-	$scope.goToHome = function() {
-		// TBD
-	}
-
 	$scope.filter = function(filter) {
 		document.getElementById('searchterm').blur();
 
@@ -213,6 +144,71 @@ myApp.controller('appController', ['$scope', function($scope) {
 		return open;
 	}
 
+	function checkIfItIsMobile() {
+	   if(window.innerWidth <= 800) {
+			return true;
+	   } else {
+			return false;
+	   }
+	}
+
+	function getProductsFromService () {
+		$.ajax({
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (productsData) {
+				$scope.$apply(function(){
+					allProducts = productsData;
+					$scope.productsLoaded = true;
+				});
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
+		});
+	}
+
+	function getClientsFromService() {
+		$.ajax({
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/clientes',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (clientsData) {
+				$scope.$apply(function(){
+					allClients = clientsData;
+					$scope.clientsLoaded = true;
+				});
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
+		});
+	};
+
+	function getHoursFromService() {
+		$.ajax({
+			url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/horarios',
+			headers: {
+				'Accept': 'application/json',
+				'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+			},
+			success: function (hoursData) {
+				$scope.$apply(function(){
+					allHours = hoursData;
+					$scope.hoursLoaded = true;
+				});
+			},
+			error: function (error) {
+				console.log('error', error);
+			}
+		});
+	};
+
 	function getWordsToSearch(searchedText) {
 		var outputWords = [];
 
@@ -312,8 +308,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 	    return r;
 	};
 
-	function getClient(clientID)
-	{
+	function getClient(clientID) {
 		for (var client in allClients) {
 			if (allClients[client].id === clientID) {
 				return allClients[client];
