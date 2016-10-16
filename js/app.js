@@ -100,7 +100,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 		var searchedWords = getWordsToSearch(filter);
 
 		$scope.clientsShown = getClientAndProductMatches(searchedWords);
-		console.log("clientsShown", $scope.clientsShown);
 
 		if ($scope.clientsShown.length > 0){
 			$scope.noResults = false;
@@ -122,10 +121,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 	}
 
 	$scope.isOpen = function (cliente) {
-		var open = false;
-		var currentHour = date.getHours();
-		var currentMinutes = date.getMinutes();
-
 		var getDayOfWeek = function () {
 			if (date.getDay() === 0) {
 				return "Domingo";
@@ -176,7 +171,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 						}
 					}
 				} else { // startHour < endHour
-					if (currentHour >= startHour || currentHour <= endHour) {
+					if (currentHour >= startHour && currentHour <= endHour) {
 						if(checkForMinutes()) {
 							return true;
 						}
@@ -187,14 +182,31 @@ myApp.controller('appController', ['$scope', function($scope) {
 			return false;
 		};
 
+		//-------------- PRIVATE FUNCTIONS END ----------------//
+
+		var open = false;
+		var currentHour = date.getHours();
+		var currentMinutes = date.getMinutes();
+
 		for (var horario in cliente.hours) {
 			if (getDayOfWeek() === cliente.hours[horario].dia) {
-				var openHour = Number(cliente.hours[horario].abre.split(":")[0]);
-				var openMinutes = Number(cliente.hours[horario].abre.split(":")[1]);
-				var closeHour = Number(cliente.hours[horario].cierra.split(":")[0]);
-				var closeMinutes = Number(cliente.hours[horario].cierra.split(":")[1]);
+				if (cliente.hours[horario].abre != undefined && cliente.hours[horario].cierra != undefined) {
+					var openHour = Number(cliente.hours[horario].abre.split(":")[0]);
+					var openMinutes = Number(cliente.hours[horario].abre.split(":")[1]);
+					var closeHour = Number(cliente.hours[horario].cierra.split(":")[0]);
+					var closeMinutes = Number(cliente.hours[horario].cierra.split(":")[1]);
 
-				open = checkTimeRange(openHour, openMinutes, closeHour, closeMinutes);
+					open = checkTimeRange(openHour, openMinutes, closeHour, closeMinutes);
+				}
+
+				if(!open && cliente.hours[horario].vuelveabrir != undefined && cliente.hours[horario].vuelvecerrar != undefined) {
+					openHour = Number(cliente.hours[horario].vuelveabrir.split(":")[0]);
+					openMinutes = Number(cliente.hours[horario].vuelveabrir.split(":")[1]);
+					closeHour = Number(cliente.hours[horario].vuelvecerrar.split(":")[0]);
+					closeMinutes = Number(cliente.hours[horario].vuelvecerrar.split(":")[1]);
+
+					open = checkTimeRange(openHour, openMinutes, closeHour, closeMinutes);
+				}
 			}
 		}
 
