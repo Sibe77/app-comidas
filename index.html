@@ -81,8 +81,8 @@
                             <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
 
                             <div class="openClosedSign">
-                                <h3 ng-if="isOpen(clientShown)">Abierto</h3>
-                                <h3 ng-if="!isOpen(clientShown)">Cerrado</h3>
+                                <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
+                                <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
                             </div>
 
                             <div class="matchedProducts">

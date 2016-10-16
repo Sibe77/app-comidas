@@ -1,25 +1,14 @@
 var myApp = angular.module('myApp',[]);
 
 myApp.controller('appController', ['$scope', function($scope) {
-	var allProducts; // Gotten from getProductsFromService();
-	var allClients; // Gotten from getClientsFromService();
-	var allHours; // Gotten from getHoursFromService();
-	var date = new Date();
 
-	$scope.isMobile;
+	$scope.isMobile = window.innerWidth <= 800 ? true : false;
 	$scope.clientsShown;
 	$scope.noResults;
 	$scope.productsLoaded;
 	$scope.clientsLoaded;
 	$scope.hoursLoaded;
 	$scope.isSearchBoxFocused;
-
-	function init () {
-		$scope.isMobile = checkIfItIsMobile();
-		getProductsFromService();
-		getClientsFromService();
-		getHoursFromService();
-	}
 
 	$scope.filter = function(filter) {
 		document.getElementById('searchterm').blur();
@@ -51,7 +40,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 		$scope.isSearchBoxFocused = false;
 	}
 
-	$scope.isOpen = function (cliente) {
+	$scope.isStoreOpen = function (cliente) {
 		var getDayOfWeek = function () {
 			if (date.getDay() === 0) {
 				return "Domingo";
@@ -144,13 +133,18 @@ myApp.controller('appController', ['$scope', function($scope) {
 		return open;
 	}
 
-	function checkIfItIsMobile() {
-	   if(window.innerWidth <= 800) {
-			return true;
-	   } else {
-			return false;
-	   }
-	}
+	// ----------- End $scope ---------- //
+
+	var allProducts; // Gotten from getProductsFromService();
+	var allClients; // Gotten from getClientsFromService();
+	var allHours; // Gotten from getHoursFromService();
+	var date = new Date();
+
+	function init () {
+		getProductsFromService();
+		getClientsFromService();
+		getHoursFromService();
+	};
 
 	function getProductsFromService () {
 		$.ajax({
@@ -169,7 +163,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				console.log('error', error);
 			}
 		});
-	}
+	};
 
 	function getClientsFromService() {
 		$.ajax({
@@ -238,7 +232,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 		}
 
 		return outputWords;
-	}
+	};
 
 	function getClientAndProductMatches (searchedWords) {
 		var clientList = [];
@@ -296,7 +290,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 		}
 
 		return output;
-	}
+	};
 
 	function accentsTidyAndLowercase(s) {
 	    var r=s.toLowerCase();
@@ -314,7 +308,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				return allClients[client];
 			}
 		}
-	}
+	};
 
 	init();
 }]);
