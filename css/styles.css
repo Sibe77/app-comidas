@@ -1,0 +1,242 @@
+@font-face {
+  font-family: 'Baloo Tamma';
+  src: url('fonts/BalooTamma-Regular.eot');
+  src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+   url('fonts/BalooTamma-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+   url('fonts/BalooTamma-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+   url('fonts/BalooTamma-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+   url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg');/* IE9 Compat Modes */
+  /* Legacy iOS */
+}
+.matchedProducts {
+  padding: 10px;
+}
+.caption {
+  overflow: hidden;
+}
+.caption h4 {
+  color: #f69323;
+  margin-bottom: 0;
+}
+.caption h4 p {
+  margin: 0;
+}
+.caption .nombre {
+  color: #002448;
+  font-weight: bold;
+  overflow: auto;
+}
+.caption .descripcion {
+  font-size: 10pt;
+  color: #002448;
+}
+.cliente {
+  color: #f69323;
+  font-weight: bold;
+  text-align: center;
+}
+.contacto {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #d17581;
+}
+.contacto p {
+  color: #ffffff;
+  font-size: 11pt;
+  font-weight: lighter;
+  font-family: baloo tamma;
+}
+.thumbnail {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: -1px 0px 70px -7px #000000;
+}
+.thumbnail .thumbnail img {
+  width: 100%;
+  height: 260px;
+}
+.thumbnail .thumbnail .caption {
+  padding: 0;
+}
+.thumbnail .thumbnail .caption-full {
+  padding: 9px;
+  color: #333;
+}
+.headerTitle {
+  margin: 30px;
+  color: #5f96c6;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: 12pt Arial;
+}
+*:focus {
+  outline: none;
+}
+body {
+  min-height: 100vh;
+  padding-top: 70px;
+}
+body::after {
+  content: "";
+  background: url("../images/backgroundPattern.png");
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+}
+body.loading {
+  overflow: hidden;
+}
+.field {
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: row;
+  -webkit-box-shadow: 0px 0px 15px 0px black;
+  -moz-box-shadow: 0px 0px 15px 0px black;
+  box-shadow: 0px 0px 15px 0px black;
+  z-index: 1;
+  width: 100vw;
+}
+.nav-up {
+  top: -45px;
+}
+button img {
+  width: 25px;
+}
+.field #searchterm {
+  width: 0;
+  height: 47px;
+}
+.field > input[type=text],
+.field > button {
+  display: block;
+  font-family: 'Baloo Tamma';
+}
+.field > input[type=text] {
+  flex: 1;
+  padding: 0.6em;
+  border: 0.2em solid #f69323;
+}
+.field > button {
+  padding: 0.6em 0.8em;
+  background-color: #f69323;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+footer {
+  color: #eee;
+}
+.cliente,
+.contacto .direccion .contacto .pull-right,
+.caption .pull-right,
+.noResultsHeader,
+.loadingText {
+  font-family: 'Baloo Tamma';
+  font-weight: lighter;
+}
+.loadingText {
+  color: #f69323;
+  text-align: center;
+}
+.noResultsHeader {
+  color: #f69323;
+  text-align: center;
+}
+.homePromotional .promotionalText {
+  width: 90vw;
+  position: absolute;
+  left: 5vw;
+  bottom: 60vh;
+}
+.logo {
+  width: 40vw;
+  bottom: 9vh;
+  left: 30vw;
+  position: absolute;
+}
+/* Celulares */
+@media only screen and (max-width: 799px) {
+  body {
+    background-color: #E6E6E6;
+  }
+  .caption h4,
+  .cliente {
+    color: #f69323;
+  }
+  .contacto {
+    background-color: #f69323;
+    width: 104%;
+    position: relative;
+    left: -2%;
+  }
+  .homePromotional.searchBoxFocus .promotionalText {
+    top: 40vh;
+  }
+  .homePromotional.searchBoxFocus .logo {
+    display: none;
+  }
+}
+/* Desktop y tablets */
+@media only screen and (min-width: 800px) {
+  body {
+    padding-top: 85px;
+    background-color: #313131;
+  }
+  .field {
+    position: static;
+    margin: 0 auto 70px;
+    width: 60vw;
+  }
+  .homePromotional .promotionalText {
+    width: 50vw;
+    position: absolute;
+    top: 32vh;
+    left: 25vw;
+  }
+  .logo {
+    width: 12vw;
+    position: absolute;
+    bottom: 7vh;
+    left: 44vw;
+  }
+  .matchedProducts {
+    min-height: 250px;
+  }
+  .thumbnail {
+    width: 70%;
+    float: right;
+    position: relative;
+    margin-bottom: 35px;
+  }
+  .thumbnail img {
+    position: absolute;
+    left: -300px;
+    top: 5px;
+    width: 250px;
+    height: 250px;
+    border: solid #f69323;
+  }
+  .cliente {
+    color: #f69323;
+    position: relative;
+    left: -72%;
+    top: 260px;
+    margin-bottom: -35px;
+  }
+  .thumbnail .caption {
+    border-bottom: dashed 1px lightgray;
+  }
+  .thumbnail .caption:last-child {
+    border-bottom: 0;
+  }
+  .contacto p {
+    color: #002448;
+  }
+}
