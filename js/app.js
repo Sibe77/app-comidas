@@ -12,8 +12,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 	$scope.noResults;
 
 	$scope.search = function(filter) {
-		var accentsTidyAndLowercase = function (s) {
-		    var r=s.toLowerCase();
+		var accentsTidyAndLowercase = function (text) {
+		    var r = text.toLowerCase();
 		    r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
 		    r = r.replace(new RegExp("[èéêë]", 'g'),"e");
 		    r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
@@ -23,98 +23,96 @@ myApp.controller('appController', ['$scope', function($scope) {
 		};
 
 		var getWordsToSearch = function (searchedText) {
-			var outputWords = [];
+			var pluralToSingular = function(word) {
+				if (word.slice(-1) === "s") {
+					word = word.slice(0,-1);
+				}
+				return word;
+			};
 
-			// Here we remove the accents.
 	        searchedText = accentsTidyAndLowercase(searchedText);
-			// Here we write those words that we need to ignore when performing the search
-			var commonWords = ["de","la","que","el","en","y","a","los","del","las"];
-
 			var searchedWords = searchedText.split(" ");
+			var commonWords = ["de","la","que","el","en","y","a","los","del","las", "con"];
 
-			for (var searchedWord in searchedWords) {
-				var isCommonWord = false;
-				for (var commonWord in commonWords) {
-					if (searchedWords[searchedWord] == commonWords[commonWord]) {
-						isCommonWord = true;
-					}
+			var outputWords = [];
+			_.each(searchedWords, function(searchedWord) {
+				if (_.indexOf(commonWords, searchedWord) < 0) {
+					searchedWord = pluralToSingular(searchedWord);
+					outputWords.push(searchedWord);
 				}
-
-				if (!isCommonWord) {
-					var word = searchedWords[searchedWord];
-					// Here we remove the "s" letter at the end of the word so can match both plural and singular
-						if (word.slice(-1) === "s") {
-							word = word.slice(0,-1);
-						}
-					outputWords.push(word);
-				}
-			}
-
+			});
 			return outputWords;
 		};
 
-		var getClientAndProductMatches = function (searchedWords) {
-			var getClient = function (clientID) {
-				for (var client in allClients) {
-					if (allClients[client].id === clientID) {
-						return allClients[client];
-					}
-				}
-			};
-
-			// ------------------- //
-			
-			var clientList = [];
-
-			for (var product in allProducts) {
-				var matchesAllProductWords = true;
+		var getMatches = function (searchedWords) {
+			var matchesClient = function (cliente, searchedWords) {
 				var clientWordsMatched = 0;
+				var currentClientNumberOfWords = cliente.split(" ").length;
+				var currentClient = accentsTidyAndLowercase(cliente);
 
-				var currentProduct = accentsTidyAndLowercase(allProducts[product].producto);
+				_.each(searchedWords, function (searchedWord) {
+					var searchQuery = new RegExp("\\b"+searchedWord, "i");
+					if (currentClient.search(searchQuery) != -1)
+					{
+						clientWordsMatched++;
+					}
+				});
 
-				if (allProducts[product].cliente[0].cliente != undefined) {
-					var currentClient = accentsTidyAndLowercase(allProducts[product].cliente[0].cliente);
-					var currentClientNumberOfWords = allProducts[product].cliente[0].cliente.split(" ").length;
-				}
+				return (clientWordsMatched === currentClientNumberOfWords);
+			}
 
-				for (var searchedWord in searchedWords) {
-					var searchQuery = new RegExp("\\b"+searchedWords[searchedWord], "i");
+			var matchesProduct = function (product, searchedWords) {
+				var matchesAllProductWords = true;
+				var currentProduct = accentsTidyAndLowercase(product.producto);
+
+				_.each(searchedWords, function (searchedWord) {
+					var searchQuery = new RegExp("\\b"+searchedWord, "i");
 
 					if (currentProduct.search(searchQuery) == -1) {
 						matchesAllProductWords = false;
 					}
-					if (currentClient != undefined ) {
-						if (currentClient.search(searchQuery) != -1)
-						{
-							clientWordsMatched++;
-						}
-					}
-				}
+				});
 
-				if (matchesAllProductWords || clientWordsMatched === currentClientNumberOfWords) {
-					// Si el cliente no existe todavía en la lista que estamos creando
-					// Lo creamos y le asignamos sus productos (aquellos que matchean),
-					// y le asignamos sus correspondientes horarios de apertura y cierre.
-					if (!(allProducts[product].cliente[0].cliente in clientList)) {
-						var currentClient = getClient(allProducts[product].cliente[0].id);
-						var hours = [];
-						// Agregamos las horas al correspondiente cliente
-						for (var hour in allHours) {
-							if (allHours[hour].cliente[0].cliente === allProducts[product].cliente[0].cliente) {
-								hours.push(allHours[hour]);
-							}
-						}
-
-						clientList[allProducts[product].cliente[0].cliente] = {client: currentClient, matchedProducts: [], hours: hours};
-					}
-
-			        clientList[allProducts[product].cliente[0].cliente].matchedProducts.push(allProducts[product]);
-				}
+				return matchesAllProductWords;
 			}
 
-			var output = [];
+			var mergeClientData = function (cliente, product, allhours, allClients) {
+				var currentClient = _.find(allClients, ['id', product.cliente[0].id]);
+				console.log(allClients);
+				console.log("currentClient", currentClient);
+				var hours = [];
+				// Agregamos las horas al correspondiente cliente
+				_.each(allHours, function (currentHours) {
+					if (currentHours.cliente === cliente) {
+						hours.push(currentHours);
+					}
+				});
 
-			for (var client in clientList) {
+				return {client: currentClient, matchedProducts: [], hours: hours};
+			};
+
+			var output = [];
+			var clientList = [];
+
+			_.each(allProducts, function (product) {
+				var cliente = product.cliente[0].cliente;
+				var productMatch = matchesProduct(product, searchedWords);
+				if (cliente != undefined) {
+					var clientMatch = matchesClient(cliente, searchedWords);
+
+					if (productMatch || clientMatch) {
+						// Si el cliente no existe todavía en la lista que estamos creando
+						// Lo creamos y le asignamos sus productos (aquellos que matchean),
+						// y le asignamos sus correspondientes horarios de apertura y cierre.
+						if (!(cliente in clientList)) {
+							clientList[cliente] = mergeClientData(cliente, product, allHours, allClients);
+						}
+				        clientList[cliente].matchedProducts.push(product);
+					}
+				}
+			});
+
+			for (client in clientList) {
 				output.push(clientList[client]);
 			}
 
@@ -134,7 +132,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		var searchedWords = getWordsToSearch(filter);
 
-		$scope.clientsShown = getClientAndProductMatches(searchedWords);
+		$scope.clientsShown = getMatches(searchedWords);
+		console.log("clientsShown", $scope.clientsShown);
 
 		if ($scope.clientsShown.length > 0){
 			$scope.noResults = false;
