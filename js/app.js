@@ -76,14 +76,12 @@ myApp.controller('appController', ['$scope', function($scope) {
 				return matchesAllProductWords;
 			}
 
-			var mergeClientData = function (cliente, product, allhours, allClients) {
+			var mergeClientData = function (cliente, product, allHours, allClients) {
 				var currentClient = _.find(allClients, ['id', product.cliente[0].id]);
-				console.log(allClients);
-				console.log("currentClient", currentClient);
 				var hours = [];
 				// Agregamos las horas al correspondiente cliente
 				_.each(allHours, function (currentHours) {
-					if (currentHours.cliente === cliente) {
+					if (currentHours.cliente[0].cliente === cliente) {
 						hours.push(currentHours);
 					}
 				});
@@ -133,7 +131,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 		var searchedWords = getWordsToSearch(filter);
 
 		$scope.clientsShown = getMatches(searchedWords);
-		console.log("clientsShown", $scope.clientsShown);
 
 		if ($scope.clientsShown.length > 0){
 			$scope.noResults = false;
