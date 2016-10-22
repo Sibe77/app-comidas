@@ -5,21 +5,15 @@ myApp.controller('appController', ['$scope', function($scope) {
 	$scope.isSearchBoxFocused; // Gotten from #searchterm text field on the view
 
 	$scope.clientsShown;
-	$scope.productsLoaded;
-	$scope.clientsLoaded;
-	$scope.hoursLoaded;
+	$scope.loadComplete = false;
 
 	$scope.noResults;
 
 	$scope.search = function(filter) {
 		var accentsTidyAndLowercase = function (text) {
-		    var r = text.toLowerCase();
-		    r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
-		    r = r.replace(new RegExp("[èéêë]", 'g'),"e");
-		    r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
-		    r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
-		    r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
-		    return r;
+			var r = text.toLowerCase();
+			var r = _.deburr(r); // removing accents
+			return r;
 		};
 
 		var getWordsToSearch = function (searchedText) {
@@ -30,7 +24,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				return word;
 			};
 
-	        searchedText = accentsTidyAndLowercase(searchedText);
+			searchedText = accentsTidyAndLowercase(searchedText);
 			var searchedWords = searchedText.split(" ");
 			var commonWords = ["de","la","que","el","en","y","a","los","del","las", "con"];
 
@@ -105,7 +99,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 						if (!(cliente in clientList)) {
 							clientList[cliente] = mergeClientData(cliente, product, allHours, allClients);
 						}
-				        clientList[cliente].matchedProducts.push(product);
+						clientList[cliente].matchedProducts.push(product);
 					}
 				}
 			});
@@ -246,6 +240,17 @@ myApp.controller('appController', ['$scope', function($scope) {
 	};
 
 	function fieldBookServiceRequest () {
+		var productsLoaded = false;
+		var clientsLoaded = false;
+		var hoursLoaded = false;
+
+		var allLoadsCompleteCheck = function () {
+			if (productsLoaded === false || clientsLoaded === false || hoursLoaded === false) {
+				return false;
+			}
+			return true;
+		}
+		
 		var getProductsFromService = function () {
 			$.ajax({
 				url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
@@ -256,7 +261,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 				success: function (productsData) {
 					$scope.$apply(function(){
 						allProducts = productsData;
-						$scope.productsLoaded = true;
+						productsLoaded = true;
+						$scope.loadComplete = allLoadsCompleteCheck();
 					});
 				},
 				error: function (error) {
@@ -275,7 +281,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 				success: function (clientsData) {
 					$scope.$apply(function(){
 						allClients = clientsData;
-						$scope.clientsLoaded = true;
+						clientsLoaded = true;
+						$scope.loadComplete = allLoadsCompleteCheck();
 					});
 				},
 				error: function (error) {
@@ -294,7 +301,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 				success: function (hoursData) {
 					$scope.$apply(function(){
 						allHours = hoursData;
-						$scope.hoursLoaded = true;
+						hoursLoaded = true;
+						$scope.loadComplete = allLoadsCompleteCheck();
 					});
 				},
 				error: function (error) {

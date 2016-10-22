@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,13 +18,6 @@
 
     <script src="js/angular.min.js"></script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <!-- loDash -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
 
@@ -39,90 +31,81 @@
         ga('create', 'UA-85712186-1', 'auto');
         ga('send', 'pageview');
     </script>
-    </head>
+</head>
 
-<body ng-app="myApp" ng-controller="appController" ng-class="!productsLoaded || !clientsLoaded || !hoursLoaded ? 'loading' : '' ">
-    <div ng-if="!productsLoaded || !clientsLoaded || !hoursLoaded" class="loadingText">
+<body ng-app="myApp" ng-controller="appController" ng-class="!loadComplete ? 'loading' : '' ">
+
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" ng-if="!loadComplete">
         <h2>CARGANDO...</h2>
-        <div class="homePromotional">
-            <img src="images/logo.png" class="logo">
-        </div>
+        <img src="images/logo.png" class="logo">
     </div>
-    <div ng-if="productsLoaded && clientsLoaded && hoursLoaded" ng-cloak>
-        <form class="field" id="searchform" autocomplete="off">
-        <!-- 
-            <button type="submit" id="home" ng-click="goToHome()">
-                <img src="images/home.png">
-            </button>
-        -->
-            <!-- Este input envía datos sobre la busqueda a analytics cuando pierde focus -->
+    <!-- end LOADING SCREEN -->
+
+    <!-- POST-LOAD LAYOUT -->
+    <div ng-if="loadComplete" ng-cloak>
+        <!-- GENERAL SEARCH BOX -->
+        <form id="searchBox" autocomplete="off">
             <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" ng-focus="isSearchBoxFocused = true" ng-blur="isSearchBoxFocused = false" />
 
             <button type="submit" id="search" ng-click="search(searchText)">
                 <img src="images/go.png">
             </button>
         </form>
+        <!-- end GENERAL SEARCH BOX -->
 
-        <!-- Page Content -->
-        <div class="container">
-            <!-- Home Page. -->
-            <div ng-if="clientsShown == null" class="homePromotional" ng-class="isSearchBoxFocused ? 'searchBoxFocus' : ''">
+        <!-- SCREENS-->
+        <div>
+            <!-- HOME SCREEN -->
+            <div ng-if="clientsShown == null" id="homeScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''">
                 <img src="images/queSeTeAntoja.png" class="promotionalText">
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
+            <!-- end HOME SCREEN -->
 
-            <!-- Esto se muestra cuando no hay clients que coincidan con el criterio de la busqueda. -->
-            <div ng-if="noResults">
+            <!-- NO RESULTS SCREEN -->
+            <div ng-if="noResults" id="noResultsScreen">
                 <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h1>
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
-                    <div ng-repeat="clientShown in clientsShown">
-                        <div class="thumbnail">
-                            <p ng-if="!isMobile" class="cliente">
-                                {{clientShown.client.cliente}}
-                            </p>
+            <!-- end NO RESULTS SCREEN -->
 
-                            <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
+            <!-- RESULTS SCREEN -->
+            <div id="resultsScreen">
+                <div ng-repeat="clientShown in clientsShown">
+                    <div class="clientCard">
+                        <p ng-if="!isMobile" class="clientName">{{clientShown.client.cliente}}</p>
 
-                            <div class="openClosedSign">
-                                <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
-                                <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
+                        <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
+
+                        <div class="openClosedSign">
+                            <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
+                            <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
+                        </div>
+
+                        <div class="matchedProducts">
+                            <div ng-repeat="product in clientShown.matchedProducts" class="product">
+                                <h4 class="pull-right">${{product.precio}}</h4>
+                                <h4><p class="productName" href="#">{{product.producto}}</p>
+                                </h4>
+                                <p class="descripcion">{{product.descripcion}}</p>
                             </div>
+                        </div>
 
-                            <div class="matchedProducts">
-                                <div ng-repeat="product in clientShown.matchedProducts" class="caption">
-                                    <h4 class="pull-right">${{product.precio}}</h4>
-                                    <h4><p class="nombre" href="#">{{product.producto}}</p>
-                                    </h4>
-                                    <p class="descripcion">{{product.descripcion}}</p>
-                                </div>
-                            </div>
+                        <div class="contacto">
+                            <p class="pull-right">{{clientShown.client.telefono}}</p>
+                            <p class="direccion">{{clientShown.client.direccion}}</p>
+                        </div>
 
-                            <div class="contacto">
-                                <p class="pull-right">{{clientShown.client.telefono}}</p>
-                                <p class="direccion">
-                                    {{clientShown.client.direccion}}
-                                </p>
-                            </div>
-
-                            <p ng-if="isMobile" class="cliente">
-                                {{clientShown.client.cliente}}
-                            </p>
+                        <p ng-if="isMobile" class="clientName">{{clientShown.client.cliente}}</p>
                     </div>
+                </div>
             </div>
-
+            <!-- end RESULTS SCREEN -->
         </div>
-        <!-- /.container -->
-
-        <div class="container">
-            <!-- Footer -->
-            <footer>
-
-            </footer>
-
-        </div>
-        <!-- /.container -->
+        <!-- end SCREENS -->
     </div>
+    <!-- end POST-LOAD LAYOUT -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

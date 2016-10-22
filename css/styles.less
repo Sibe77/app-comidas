@@ -1,91 +1,32 @@
+// Media Queries
+@desktop:   ~"only screen and (min-width:800px)";
+@mobile:    ~"only screen and (max-width: 799px)";
+
+// Colors
+@mostaza: #f69323;
+@white: #fff;
+@text: #002448;
+@lightBase: #E6E6E6;
+@darkBase: #313131;
+
+// Mixins
+
+// Fonts
 @font-face {
 	font-family: 'Baloo Tamma';
-	src: url('fonts/BalooTamma-Regular.eot'); /* IE9 Compat Modes */
-	src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-	url('fonts/BalooTamma-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-	url('fonts/BalooTamma-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-	url('fonts/BalooTamma-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-	url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+	src: url('fonts/BalooTamma-Regular.eot');
+	src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), 
+	url('fonts/BalooTamma-Regular.woff2') format('woff2'), 
+	url('fonts/BalooTamma-Regular.woff') format('woff'), 
+	url('fonts/BalooTamma-Regular.ttf')  format('truetype'), 
+	url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg');
 }
 
-.matchedProducts {
-	padding: 10px;
-}
-
-.caption {
-	overflow: hidden;
-
-	h4 {
-		color: #f69323;
-		margin-bottom: 0;
-
-		p {
-			margin: 0;
-		}
-	}
-
-	.nombre {
-		color: #002448;
-		font-weight: bold;
-		overflow: auto;
-	}
-
-	.descripcion {
-		font-size: 10pt;
-		color: #002448;
-	}
-}
-
-.cliente {
-	color: #f69323;;
-	font-weight: bold;
-	text-align: center;
-}
-
-.contacto {
-	padding-right: 10px;
-	padding-left: 10px;
-	color: #d17581;
-
-	p {
-		color: #ffffff;
-		font-size: 11pt;
-		font-weight: lighter;
-		font-family: baloo tamma;
-	}
-}
-
-
-
-.thumbnail {
-	padding: 0;
-	border-radius: 0;
-	box-shadow: -1px 0px 70px -7px black;
-
-	.thumbnail img {
-		width: 100%;
-		height: 260px;
-	}
-
-	.thumbnail .caption {
-		padding: 0;
-	}
-
-	.thumbnail .caption-full {
-		padding: 9px;
-		color: #333;
-	}
-}
-
-.headerTitle {
-	margin: 30px;
-	color: #5f96c6;
-}
-
+/* GENERAL PROPERTIES */ 
 * {
-	margin:0;
-	padding:0;
-	font:12pt Arial;
+	margin: 0;
+	padding: 0;
+	font: 12pt Arial;
 
 	&:focus {
 		outline: none;
@@ -94,7 +35,14 @@
 
 body {
 	min-height: 100vh;
-	padding-top: 70px;
+	@media @mobile {
+		padding-top: 70px;
+		background-color: @lightBase;
+	}
+	@media @desktop {
+		padding-top: 85px;
+		background-color: @darkBase;
+	}
 
 	&::after {
 		content: "";
@@ -108,13 +56,14 @@ body {
 		z-index: -1;
 	}
 
+	/* Page Loading */
 	&.loading {
 		overflow: hidden;
 	}
 }
 
-
-.field {
+/* SEARCH BOX */
+#searchBox {
 	display:flex;
 	position: fixed;
 	top: 0;
@@ -124,19 +73,12 @@ body {
 	box-shadow:         0px 0px 15px 0px black;
 	z-index: 1;
 	width: 100vw;
-}
-
-.nav-up {
-	top: -45px; 
-}
-
-button {
-	img {
-		width: 25px;	
+	@media @desktop {
+		position: static;
+		margin: 0 auto 70px;
+		width: 60vw;
 	}
-}
 
-.field {
 	#searchterm {
 		width: 0;
 		height: 47px;
@@ -151,43 +93,16 @@ button {
 	&>input[type=text] {
 		flex:1;
 		padding:0.6em;
-		border:0.2em solid #f69323;
+		border:0.2em solid @mostaza;
 	}
 
 	&>button {
 		padding:0.6em 0.8em;
-		background-color: #f69323;
-		color:white;
-		font-weight: bold;
+		background-color: @mostaza;
 		border:none;
-	}
-}
-
-footer {
-	color: #eee;
-}
-
-.cliente, .contacto .direccion .contacto .pull-right, .caption .pull-right, .noResultsHeader, .loadingText{
-	font-family: 'Baloo Tamma';
-	font-weight: lighter;
-}
-
-.loadingText {
-	color: #f69323;
-	text-align: center;
-}
-
-.noResultsHeader{
-	color: #f69323;
-	text-align: center;
-}
-
-.homePromotional {
-	.promotionalText {
-		width: 90vw;
-		position: absolute;
-		left: 5vw;
-		bottom: 60vh;
+		img {
+			width: 25px;	
+		}
 	}
 }
 
@@ -196,104 +111,181 @@ footer {
 	bottom: 9vh;
 	left: 30vw;
 	position: absolute;
+	@media @desktop {
+		width: 12vw;
+		position: absolute;
+		bottom: 7vh;
+		left: 44vw;
+	}
 }
 
-/* Celulares */
-@media only screen and (max-width: 799px)  {
-	body {
-		background-color: #E6E6E6;
+/* LOADING SCREEN */
+#loadingScreen {
+	font-family: 'Baloo Tamma';
+	font-weight: lighter;
+	color: @mostaza;
+	text-align: center;
+}
+
+/* HOME SCREEN */
+#homeScreen {
+	/* NO FOCUS ON SEARCH BOX */
+	.promotionalText {
+		width: 90vw;
+		position: absolute;
+		left: 5vw;
+		bottom: 60vh;
+		@media @desktop {
+			width: 50vw;
+			position: absolute;
+			top: 32vh;
+			left: 25vw;
+		}
 	}
 
-	.caption h4, .cliente {
-		color: #f69323;
-	}
-
-	.contacto {
-		background-color: #f69323;
-		width: 104%;
-		position: relative;
-		left: -2%;
-	}
-
-	.homePromotional {
-		&.searchBoxFocus {
-			.promotionalText {
+	/* FOCUS ON SEARCH BOX */
+	&.isSearchBoxFocused {
+		.promotionalText {
+			@media @mobile {
 				top: 40vh;
 			}
+		}
 
-			.logo{
+		.logo{
+			@media @mobile {
 				display: none;
 			}
 		}
 	}
 }
 
-/* Desktop y tablets */
-@media only screen and (min-width:800px) {
-	body {
-		padding-top: 85px;
-		background-color: #313131;
+/* NO RESULTS SCREEN */
+#noResultsScreen {
+	.noResultsHeader{
+		font-family: 'Baloo Tamma';
+		font-weight: lighter;
+		color: @mostaza;
+		text-align: center;
 	}
+}
 
-	.field {
-		position: static;
-		margin: 0 auto 70px;
-		width: 60vw;
-	}
-
-	.homePromotional .promotionalText {
-		width: 50vw;
-		position: absolute;
-		top: 32vh;
-		left: 25vw;
-	}
-
-	.logo {
-		width: 12vw;
-		position: absolute;
-		bottom: 7vh;
-		left: 44vw;
-	}
-
-	.matchedProducts {
-		min-height: 250px;
-	}
-
-	.thumbnail {
-		width: 70%;
-		float: right;
-		position: relative;
-		margin-bottom: 35px;
-
-		img {
-			position: absolute;
-			left: -300px;
-			top: 5px;
-			width: 250px;
-			height: 250px;
-			border: solid #f69323;
+/* RESULTS SCREEN */
+#resultsScreen {
+	.clientCard {
+		background-color: white;
+		@media @desktop {
+			width: 70%;
+			float: right;
+			position: relative;
+			margin-bottom: 35px;
 		}
-	}
 
-	.cliente {
-		color: #f69323;
-		position: relative;
-		left: -72%;
-		top: 260px;
-		margin-bottom: -35px;
-	}
+		.clientName {
+			font-family: 'Baloo Tamma';
+			color: @mostaza;
+			font-weight: bold;
+			text-align: center;
 
-	.thumbnail {
-		.caption {
-			border-bottom: dashed 1px lightgray;
-
-			&:last-child {
-				border-bottom: 0;
+			@media @desktop {
+				position: relative;
+				left: -72%;
+				top: 260px;
+				margin-bottom: -35px;
 			}
 		}
-	}
 
-	.contacto p {
-		color: #002448;
+		img {
+			width: 100%;
+			height: 260px;
+
+			@media @desktop {
+				position: absolute;
+				left: -300px;
+				top: 5px;
+				width: 250px;
+				height: 250px;
+				border: solid @mostaza;
+			}
+		}
+
+		.matchedProducts {
+			padding: 10px;
+
+			@media @desktop {
+				min-height: 250px;
+			}
+
+			.product {
+				padding: 0;
+				overflow: hidden;
+				@media @desktop {
+					border-bottom: dashed 1px lightgray;
+				}
+
+				&:last-child {
+					@media @desktop {
+						border-bottom: 0;
+					}
+				}
+
+				.productName {
+					color: @text;
+					font-weight: bold;
+					overflow: auto;
+				}
+
+				.descripcion {
+					font-size: 10pt;
+					color: @text;
+				}
+
+				.pull-right {
+					font-family: 'Baloo Tamma';
+					font-weight: lighter;
+				}
+
+				h4 {
+					color: @mostaza;
+					margin-bottom: 0;
+
+					p {
+						margin: 0;
+					}
+				}
+			}
+		}
+
+		.contacto {
+			padding-right: 10px;
+			padding-left: 10px;
+
+			@media @mobile {
+				background-color: @mostaza;
+				width: 104%;
+				position: relative;
+				left: -2%;
+			}
+
+			.direccion {
+				font-family: 'Baloo Tamma';
+				font-weight: lighter;
+			}
+
+			.pull-right {
+				font-family: 'Baloo Tamma';
+				font-weight: lighter;
+			}
+
+			p {
+				color: @white;
+				font-size: 11pt;
+				font-weight: lighter;
+				font-family: baloo tamma;
+
+				@media @desktop {
+					color: @text;
+				}
+			}	
+		}
 	}
 }
