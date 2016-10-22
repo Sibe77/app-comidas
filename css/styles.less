@@ -185,14 +185,14 @@ body {
 		-webkit-box-shadow: 0px 0px 15px 0px black;
 		-moz-box-shadow:    0px 0px 15px 0px black;
 		box-shadow:         0px 0px 15px 0px black;
+		position: relative;
 		@media @mobile {
 			margin: 0 5px 20px;
 		}
 		@media @desktop {
 			width: 80%;
 			margin: 30px 10%;
-			position: relative;
-			min-height: 270px;
+			min-height: 300px;
 		}
 
 		.clientInfo {
@@ -201,7 +201,7 @@ body {
 			position: relative;
 			@media @desktop {
 				position: static;
-				margin: 10px;
+				margin: 30px 10px;
 				float: left;
 				width: 250px;
 				height: 250px;
@@ -222,6 +222,7 @@ body {
 				top: 0;
 				@media @desktop {
 					width: 270px;
+					top: 18px;
 				}
 			}
 
@@ -235,6 +236,7 @@ body {
 				@media @desktop {
 					width: 250px;
 					margin-left: 10px;
+					bottom: 20px;
 					border-top: 3px solid @mostaza;
 					background-color: white;
 				}
@@ -269,7 +271,18 @@ body {
 		}
 
 		.openClosedSign {
-			display: none;
+			background: red;
+			color: white;
+			font-weight: bold;
+			font-family: "baloo tamma";
+			padding-top: 1px;
+			text-align: center;
+			@media @mobile {
+				position: absolute;
+				width: 102%;
+				top: 100px;
+				left: -1%;
+			}
 		}
 
 		.matchedProducts {

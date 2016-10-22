@@ -74,7 +74,7 @@
             <div id="resultsScreen">
                 <div class="clientCard" ng-repeat="clientShown in clientsShown">
                     <div class="clientInfo">
-                        <p ng-if="!isMobile" class="clientName">{{clientShown.client.cliente}}</p>
+                        <p class="clientName">{{clientShown.client.cliente}}</p>
                         <img ng-src="{{clientShown.client.imagen}}">
                         <div class="contacto">
                             <p class="direccion">{{clientShown.client.direccion}}</p>
@@ -82,10 +82,8 @@
                         </div>
                     </div>
 
-
-                    <div class="openClosedSign">
-                        <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
-                        <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
+                    <div ng-if="!isStoreOpen(clientShown)" class="openClosedSign">
+                        <h3>Cerrado</h3>
                     </div>
 
                     <div class="matchedProducts">
@@ -95,8 +93,6 @@
                             <h5 class="descripcion">{{product.descripcion}}</h5>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- end RESULTS SCREEN -->
