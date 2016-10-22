@@ -296,6 +296,7 @@ body.loading {
   color: #002448;
   font-weight: bold;
   overflow: auto;
+  font-size: 16px;
 }
 #resultsScreen .clientCard .matchedProducts .product h5.descripcion {
   font-size: 10pt;
@@ -306,4 +307,5 @@ body.loading {
   font-family: 'Baloo Tamma';
   font-weight: lighter;
   color: #f69323;
+  font-size: 16px;
 }
