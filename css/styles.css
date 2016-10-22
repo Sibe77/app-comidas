@@ -281,6 +281,7 @@ body.loading {
 }
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard .matchedProducts .product {
+    padding-bottom: 10px;
     border-bottom: dashed 1px lightgray;
   }
 }
