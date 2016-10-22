@@ -65,40 +65,37 @@
 
             <!-- NO RESULTS SCREEN -->
             <div ng-if="noResults" id="noResultsScreen">
-                <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h1>
+                <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h2>
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
             <!-- end NO RESULTS SCREEN -->
 
             <!-- RESULTS SCREEN -->
             <div id="resultsScreen">
-                <div ng-repeat="clientShown in clientsShown">
-                    <div class="clientCard">
-                        <p ng-if="!isMobile" class="clientName">{{clientShown.client.cliente}}</p>
+                <div class="clientCard" ng-repeat="clientShown in clientsShown">
+                    <p ng-if="!isMobile" class="clientName">{{clientShown.client.cliente}}</p>
 
-                        <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
+                    <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
 
-                        <div class="openClosedSign">
-                            <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
-                            <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
-                        </div>
-
-                        <div class="matchedProducts">
-                            <div ng-repeat="product in clientShown.matchedProducts" class="product">
-                                <h4 class="pull-right">${{product.precio}}</h4>
-                                <h4><p class="productName" href="#">{{product.producto}}</p>
-                                </h4>
-                                <p class="descripcion">{{product.descripcion}}</p>
-                            </div>
-                        </div>
-
-                        <div class="contacto">
-                            <p class="pull-right">{{clientShown.client.telefono}}</p>
-                            <p class="direccion">{{clientShown.client.direccion}}</p>
-                        </div>
-
-                        <p ng-if="isMobile" class="clientName">{{clientShown.client.cliente}}</p>
+                    <div class="openClosedSign">
+                        <h3 ng-if="isStoreOpen(clientShown)">Abierto</h3>
+                        <h3 ng-if="!isStoreOpen(clientShown)">Cerrado</h3>
                     </div>
+
+                    <div class="matchedProducts">
+                        <div ng-repeat="product in clientShown.matchedProducts" class="product">
+                            <h5 class="price">${{product.precio}}</h5>
+                            <h5 class="productName">{{product.producto}}</h5>
+                            <h5 class="descripcion">{{product.descripcion}}</h5>
+                        </div>
+                    </div>
+
+                    <div class="contacto">
+                        <p class="pull-right">{{clientShown.client.telefono}}</p>
+                        <p class="direccion">{{clientShown.client.direccion}}</p>
+                    </div>
+
+                    <p ng-if="isMobile" class="clientName">{{clientShown.client.cliente}}</p>
                 </div>
             </div>
             <!-- end RESULTS SCREEN -->

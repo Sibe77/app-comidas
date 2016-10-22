@@ -18,7 +18,7 @@ body {
 }
 @media only screen and (max-width: 799px) {
   body {
-    padding-top: 70px;
+    padding-top: 55px;
     background-color: #e6e6e6;
   }
 }
@@ -145,6 +145,14 @@ body.loading {
 /* RESULTS SCREEN */
 #resultsScreen .clientCard {
   background-color: white;
+  -webkit-box-shadow: 0px 0px 15px 0px black;
+  -moz-box-shadow: 0px 0px 15px 0px black;
+  box-shadow: 0px 0px 15px 0px black;
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard {
+    margin: 0 5px;
+  }
 }
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard {
@@ -182,6 +190,9 @@ body.loading {
     border: solid #f69323;
   }
 }
+#resultsScreen .clientCard .openClosedSign {
+  display: none;
+}
 #resultsScreen .clientCard .matchedProducts {
   padding: 10px;
 }
@@ -191,7 +202,7 @@ body.loading {
   }
 }
 #resultsScreen .clientCard .matchedProducts .product {
-  padding: 0;
+  margin: 10px 0;
   overflow: hidden;
 }
 @media only screen and (min-width:800px) {
@@ -204,25 +215,23 @@ body.loading {
     border-bottom: 0;
   }
 }
-#resultsScreen .clientCard .matchedProducts .product .productName {
+#resultsScreen .clientCard .matchedProducts .product h5 {
+  margin: 0;
+}
+#resultsScreen .clientCard .matchedProducts .product h5.productName {
   color: #002448;
   font-weight: bold;
   overflow: auto;
 }
-#resultsScreen .clientCard .matchedProducts .product .descripcion {
+#resultsScreen .clientCard .matchedProducts .product h5.descripcion {
   font-size: 10pt;
   color: #002448;
 }
-#resultsScreen .clientCard .matchedProducts .product .pull-right {
+#resultsScreen .clientCard .matchedProducts .product h5.price {
+  float: right;
   font-family: 'Baloo Tamma';
   font-weight: lighter;
-}
-#resultsScreen .clientCard .matchedProducts .product h4 {
   color: #f69323;
-  margin-bottom: 0;
-}
-#resultsScreen .clientCard .matchedProducts .product h4 p {
-  margin: 0;
 }
 #resultsScreen .clientCard .contacto {
   padding-right: 10px;
@@ -231,9 +240,9 @@ body.loading {
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard .contacto {
     background-color: #f69323;
-    width: 104%;
+    width: 102%;
     position: relative;
-    left: -2%;
+    left: -1%;
   }
 }
 #resultsScreen .clientCard .contacto .direccion {

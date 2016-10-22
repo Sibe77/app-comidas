@@ -36,7 +36,7 @@
 body {
 	min-height: 100vh;
 	@media @mobile {
-		padding-top: 70px;
+		padding-top: 55px;
 		background-color: @lightBase;
 	}
 	@media @desktop {
@@ -173,6 +173,12 @@ body {
 #resultsScreen {
 	.clientCard {
 		background-color: white;
+		-webkit-box-shadow: 0px 0px 15px 0px black;
+		-moz-box-shadow:    0px 0px 15px 0px black;
+		box-shadow:         0px 0px 15px 0px black;
+		@media @mobile {
+			margin: 0 5px;
+		}
 		@media @desktop {
 			width: 70%;
 			float: right;
@@ -208,6 +214,10 @@ body {
 			}
 		}
 
+		.openClosedSign {
+			display: none;
+		}
+
 		.matchedProducts {
 			padding: 10px;
 
@@ -216,7 +226,7 @@ body {
 			}
 
 			.product {
-				padding: 0;
+				margin: 10px 0;
 				overflow: hidden;
 				@media @desktop {
 					border-bottom: dashed 1px lightgray;
@@ -228,28 +238,25 @@ body {
 					}
 				}
 
-				.productName {
-					color: @text;
-					font-weight: bold;
-					overflow: auto;
-				}
+				h5 {
+					margin: 0;
 
-				.descripcion {
-					font-size: 10pt;
-					color: @text;
-				}
+					&.productName {
+						color: @text;
+						font-weight: bold;
+						overflow: auto;
+					}
 
-				.pull-right {
-					font-family: 'Baloo Tamma';
-					font-weight: lighter;
-				}
+					&.descripcion {
+						font-size: 10pt;
+						color: @text;
+					}
 
-				h4 {
-					color: @mostaza;
-					margin-bottom: 0;
-
-					p {
-						margin: 0;
+					&.price {
+						float: right;
+						font-family: 'Baloo Tamma';
+						font-weight: lighter;
+						color: @mostaza;
 					}
 				}
 			}
@@ -261,9 +268,9 @@ body {
 
 			@media @mobile {
 				background-color: @mostaza;
-				width: 104%;
+				width: 102%;
 				position: relative;
-				left: -2%;
+				left: -1%;
 			}
 
 			.direccion {
