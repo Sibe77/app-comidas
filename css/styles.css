@@ -3,6 +3,12 @@
   src: url('fonts/BalooTamma-Regular.eot');
   src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/BalooTamma-Regular.woff2') format('woff2'), url('fonts/BalooTamma-Regular.woff') format('woff'), url('fonts/BalooTamma-Regular.ttf') format('truetype'), url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg');
 }
+.clientDataOverImage {
+  background: rgba(255, 255, 255, 0.6);
+  text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+  color: #001219;
+  left: 0;
+}
 /* GENERAL PROPERTIES */* {
   margin: 0;
   padding: 0;
@@ -151,43 +157,84 @@ body.loading {
 }
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard {
-    margin: 0 5px;
+    margin: 0 5px 20px;
   }
 }
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard {
-    width: 70%;
-    float: right;
+    width: 80%;
+    margin: 30px 10%;
     position: relative;
-    margin-bottom: 35px;
+    min-height: 270px;
   }
 }
-#resultsScreen .clientCard .clientName {
-  font-family: 'Baloo Tamma';
-  color: #f69323;
-  font-weight: bold;
-  text-align: center;
-}
-@media only screen and (min-width:800px) {
-  #resultsScreen .clientCard .clientName {
-    position: relative;
-    left: -72%;
-    top: 260px;
-    margin-bottom: -35px;
-  }
-}
-#resultsScreen .clientCard img {
+#resultsScreen .clientCard .clientInfo {
   width: 100%;
   height: 260px;
+  position: relative;
 }
 @media only screen and (min-width:800px) {
-  #resultsScreen .clientCard img {
-    position: absolute;
-    left: -300px;
-    top: 5px;
+  #resultsScreen .clientCard .clientInfo {
+    margin: 10px;
+    float: left;
     width: 250px;
     height: 250px;
     border: solid #f69323;
+  }
+}
+#resultsScreen .clientCard .clientInfo img {
+  width: 100%;
+  height: 100%;
+}
+#resultsScreen .clientCard .clientInfo .clientName {
+  background: rgba(255, 255, 255, 0.6);
+  text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+  color: #001219;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Baloo Tamma';
+  position: absolute;
+  top: 0;
+}
+#resultsScreen .clientCard .clientInfo .contacto {
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+  color: #001219;
+  left: 0;
+}
+#resultsScreen .clientCard .clientInfo .contacto .direccion {
+  font-family: 'Baloo Tamma';
+  font-weight: lighter;
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .contacto .direccion {
+    float: left;
+  }
+}
+#resultsScreen .clientCard .clientInfo .contacto .telefono {
+  font-family: 'Baloo Tamma';
+  font-weight: lighter;
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .contacto .telefono {
+    float: right;
+  }
+}
+#resultsScreen .clientCard .clientInfo .contacto p {
+  font-size: 11pt;
+  font-weight: lighter;
+  font-family: baloo tamma;
+  text-align: center;
+}
+@media only screen and (min-width:800px) {
+  #resultsScreen .clientCard .clientInfo .contacto p {
+    color: #002448;
   }
 }
 #resultsScreen .clientCard .openClosedSign {
@@ -195,11 +242,6 @@ body.loading {
 }
 #resultsScreen .clientCard .matchedProducts {
   padding: 10px;
-}
-@media only screen and (min-width:800px) {
-  #resultsScreen .clientCard .matchedProducts {
-    min-height: 250px;
-  }
 }
 #resultsScreen .clientCard .matchedProducts .product {
   margin: 10px 0;
@@ -232,35 +274,4 @@ body.loading {
   font-family: 'Baloo Tamma';
   font-weight: lighter;
   color: #f69323;
-}
-#resultsScreen .clientCard .contacto {
-  padding-right: 10px;
-  padding-left: 10px;
-}
-@media only screen and (max-width: 799px) {
-  #resultsScreen .clientCard .contacto {
-    background-color: #f69323;
-    width: 102%;
-    position: relative;
-    left: -1%;
-  }
-}
-#resultsScreen .clientCard .contacto .direccion {
-  font-family: 'Baloo Tamma';
-  font-weight: lighter;
-}
-#resultsScreen .clientCard .contacto .pull-right {
-  font-family: 'Baloo Tamma';
-  font-weight: lighter;
-}
-#resultsScreen .clientCard .contacto p {
-  color: #ffffff;
-  font-size: 11pt;
-  font-weight: lighter;
-  font-family: baloo tamma;
-}
-@media only screen and (min-width:800px) {
-  #resultsScreen .clientCard .contacto p {
-    color: #002448;
-  }
 }
