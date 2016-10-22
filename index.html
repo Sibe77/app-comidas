@@ -75,10 +75,10 @@
                 <div class="clientCard" ng-repeat="clientShown in clientsShown">
                     <div class="clientInfo">
                         <p ng-if="!isMobile" class="clientName">{{clientShown.client.cliente}}</p>
-                        <img ng-src="{{clientShown.client.imagen}}" alt="{{clientShown.client.cliente}}">
+                        <img ng-src="{{clientShown.client.imagen}}">
                         <div class="contacto">
-                            <p class="telefono">{{clientShown.client.telefono}}</p>
                             <p class="direccion">{{clientShown.client.direccion}}</p>
+                            <p class="telefono">{{clientShown.client.telefono}}</p>
                         </div>
                     </div>
 

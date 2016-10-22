@@ -4,10 +4,14 @@
   src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/BalooTamma-Regular.woff2') format('woff2'), url('fonts/BalooTamma-Regular.woff') format('woff'), url('fonts/BalooTamma-Regular.ttf') format('truetype'), url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg');
 }
 .clientDataOverImage {
-  background: rgba(255, 255, 255, 0.6);
   text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
   color: #001219;
   left: 0;
+}
+@media only screen and (max-width: 799px) {
+  .clientDataOverImage {
+    background: rgba(255, 255, 255, 0.6);
+  }
 }
 /* GENERAL PROPERTIES */* {
   margin: 0;
@@ -175,6 +179,7 @@ body.loading {
 }
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard .clientInfo {
+    position: static;
     margin: 10px;
     float: left;
     width: 250px;
@@ -187,7 +192,6 @@ body.loading {
   height: 100%;
 }
 #resultsScreen .clientCard .clientInfo .clientName {
-  background: rgba(255, 255, 255, 0.6);
   text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
   color: #001219;
   left: 0;
@@ -197,16 +201,38 @@ body.loading {
   position: absolute;
   top: 0;
 }
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .clientName {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+@media only screen and (min-width:800px) {
+  #resultsScreen .clientCard .clientInfo .clientName {
+    width: 270px;
+  }
+}
 #resultsScreen .clientCard .clientInfo .contacto {
   padding-right: 10px;
   padding-left: 10px;
   width: 100%;
   position: absolute;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.6);
   text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
   color: #001219;
   left: 0;
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .contacto {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+@media only screen and (min-width:800px) {
+  #resultsScreen .clientCard .clientInfo .contacto {
+    width: 250px;
+    margin-left: 10px;
+    border-top: 3px solid #f69323;
+    background-color: white;
+  }
 }
 #resultsScreen .clientCard .clientInfo .contacto .direccion {
   font-family: 'Baloo Tamma';
@@ -235,6 +261,7 @@ body.loading {
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard .clientInfo .contacto p {
     color: #002448;
+    margin: 0;
   }
 }
 #resultsScreen .clientCard .openClosedSign {
@@ -242,6 +269,11 @@ body.loading {
 }
 #resultsScreen .clientCard .matchedProducts {
   padding: 10px;
+}
+@media only screen and (min-width:800px) {
+  #resultsScreen .clientCard .matchedProducts {
+    overflow: auto;
+  }
 }
 #resultsScreen .clientCard .matchedProducts .product {
   margin: 10px 0;

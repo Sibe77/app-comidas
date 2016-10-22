@@ -23,10 +23,12 @@
 
 // Mixins
 .clientDataOverImage {
-	background: fade(@white, 60%);
 	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 	color: darken(#007FB2, 30%);
 	left: 0;
+	@media @mobile {
+		background: fade(@white, 60%);
+	}
 }
 
 /* GENERAL PROPERTIES */ 
@@ -198,6 +200,7 @@ body {
 			height: 260px;
 			position: relative;
 			@media @desktop {
+				position: static;
 				margin: 10px;
 			    float: left;
 			    width: 250px;
@@ -217,6 +220,9 @@ body {
 				font-family: 'Baloo Tamma';
 				position: absolute;
 				top: 0;
+				@media @desktop {
+					width: 270px;
+				}
 			}
 
 			.contacto {
@@ -226,6 +232,12 @@ body {
 				position: absolute;
 				bottom: 0;
 				.clientDataOverImage;
+				@media @desktop {
+					width: 250px;
+					margin-left: 10px;
+				    border-top: 3px solid @mostaza;
+				    background-color: white;
+				}
 
 				.direccion {
 					font-family: 'Baloo Tamma';
@@ -250,6 +262,7 @@ body {
 					text-align: center;
 					@media @desktop {
 						color: @text;
+						margin: 0;
 					}
 				}	
 			}
@@ -261,6 +274,9 @@ body {
 
 		.matchedProducts {
 			padding: 10px;
+			@media @desktop {
+				overflow: auto;
+			}
 
 			.product {
 				margin: 10px 0;
