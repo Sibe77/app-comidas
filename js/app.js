@@ -16,6 +16,31 @@ myApp.controller('appController', ['$scope', function($scope) {
 			return r;
 		};
 
+		var getRelatedWordsFor = function (product) {
+			var productWords = product.split(' ');
+			var relatedWords = [
+				['lomo','lomito'],
+				['whiskey', 'whiski', 'wisky', 'whisky', 'wiskey', 'wiski'],
+				['sandwich','sanguche','sanguich'],
+				['cerveza', 'birra', 'cervesa']
+			];
+			var related = '';
+			_.each(productWords, function (productWord) {
+				_.each(relatedWords, function (relatedWordsGroup) {
+					var matchWordInGroup = false;
+					_.each(relatedWordsGroup, function (relatedWord) {
+						if (productWord === relatedWord) {
+							matchWordInGroup = true;
+							_.each(relatedWordsGroup, function (wordToInclude) {
+								related += (' '+wordToInclude);
+							});
+						}
+					});
+				});
+			});
+			return related;
+		};
+
 		var getWordsToSearch = function (searchedText) {
 			var pluralToSingular = function(word) {
 				if (word.slice(-1) === "s") {
@@ -58,6 +83,9 @@ myApp.controller('appController', ['$scope', function($scope) {
 			var matchesProduct = function (product, searchedWords) {
 				var matchesAllProductWords = true;
 				var currentProduct = accentsTidyAndLowercase(product.producto);
+				if (getRelatedWordsFor(currentProduct) != undefined) {
+					currentProduct += ' ' + getRelatedWordsFor(currentProduct);
+				}
 
 				_.each(searchedWords, function (searchedWord) {
 					var searchQuery = new RegExp("\\b"+searchedWord, "i");
@@ -126,6 +154,13 @@ myApp.controller('appController', ['$scope', function($scope) {
 			});
 
 			for (client in clientList) {
+				// We sort alphabetically the product names for each matched client
+				clientList[client].matchedProducts = _.sortBy(clientList[client].matchedProducts, [
+					function (product) {
+						return product.producto;
+					}
+				]);
+
 				output.push(clientList[client]);
 			}
 
