@@ -10,7 +10,7 @@
 }
 @media only screen and (max-width: 799px) {
   .clientDataOverImage {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(211, 211, 211, 0.6);
   }
 }
 /* GENERAL PROPERTIES */* {
@@ -203,7 +203,12 @@ body.loading {
 }
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard .clientInfo .clientName {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(211, 211, 211, 0.6);
+  }
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .clientName {
+    background: transparent;
   }
 }
 @media only screen and (min-width:800px) {
@@ -224,7 +229,7 @@ body.loading {
 }
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard .clientInfo .contacto {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(211, 211, 211, 0.6);
   }
 }
 @media only screen and (min-width:800px) {
@@ -280,6 +285,9 @@ body.loading {
     width: 102%;
     top: 100px;
     left: -1%;
+    -webkit-box-shadow: 0px 0px 15px 0px black;
+    -moz-box-shadow: 0px 0px 15px 0px black;
+    box-shadow: 0px 0px 15px 0px black;
   }
 }
 #resultsScreen .clientCard .matchedProducts {

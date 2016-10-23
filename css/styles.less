@@ -27,7 +27,7 @@
 	color: darken(#007FB2, 30%);
 	left: 0;
 	@media @mobile {
-		background: fade(@white, 60%);
+		background: fade(lightgray, 60%);
 	}
 }
 
@@ -220,6 +220,9 @@ body {
 				font-family: 'Baloo Tamma';
 				position: absolute;
 				top: 0;
+				@media @mobile {
+					background: transparent;
+				}
 				@media @desktop {
 					width: 270px;
 					top: 18px;
@@ -282,6 +285,9 @@ body {
 				width: 102%;
 				top: 100px;
 				left: -1%;
+				-webkit-box-shadow: 0px 0px 15px 0px black;
+				-moz-box-shadow:    0px 0px 15px 0px black;
+				box-shadow:         0px 0px 15px 0px black;
 			}
 		}
 
