@@ -72,7 +72,62 @@
 
             <!-- RESULTS SCREEN -->
             <div id="resultsScreen">
-                <div class="clientCard" ng-repeat="clientShown in clientsShown">
+                <!-- OPEN NOW -->
+                <div class="clientCard" ng-repeat="clientShown in clientsShown.open">
+                    <div class="clientInfo">
+                        <p class="clientName">{{clientShown.client.cliente}}</p>
+                        <img ng-src="{{clientShown.client.imagen}}">
+                        <div class="contacto">
+                            <p class="direccion">{{clientShown.client.direccion}}</p>
+                            <p class="telefono">{{clientShown.client.telefono}}</p>
+                        </div>
+                    </div>
+
+                    <div ng-if="!clientShown.openData.isOpen" class="openClosedSign">
+                        <h3 ng-class="clientShown.openData.openTime == undefined ? 'noOpenTime' : ''">Cerrado</h3>
+                        <p ng-if="clientShown.openData.openTime != undefined">
+                            Abrimos a las {{clientShown.openData.openTime}}
+                        </p>
+                    </div>
+
+                    <div class="matchedProducts">
+                        <div ng-repeat="product in clientShown.matchedProducts" class="product">
+                            <h5 class="price">${{product.precio}}</h5>
+                            <h5 class="productName">{{product.producto}}</h5>
+                            <h5 class="descripcion">{{product.descripcion}}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPEN LATER -->
+                <div class="clientCard" ng-repeat="clientShown in clientsShown.openLater">
+                    <div class="clientInfo">
+                        <p class="clientName">{{clientShown.client.cliente}}</p>
+                        <img ng-src="{{clientShown.client.imagen}}">
+                        <div class="contacto">
+                            <p class="direccion">{{clientShown.client.direccion}}</p>
+                            <p class="telefono">{{clientShown.client.telefono}}</p>
+                        </div>
+                    </div>
+
+                    <div ng-if="!clientShown.openData.isOpen" class="openClosedSign">
+                        <h3 ng-class="clientShown.openData.openTime == undefined ? 'noOpenTime' : ''">Cerrado</h3>
+                        <p ng-if="clientShown.openData.openTime != undefined">
+                            Abrimos a las {{clientShown.openData.openTime}}
+                        </p>
+                    </div>
+
+                    <div class="matchedProducts">
+                        <div ng-repeat="product in clientShown.matchedProducts" class="product">
+                            <h5 class="price">${{product.precio}}</h5>
+                            <h5 class="productName">{{product.producto}}</h5>
+                            <h5 class="descripcion">{{product.descripcion}}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLOSED -->
+                <div class="clientCard" ng-repeat="clientShown in clientsShown.closed">
                     <div class="clientInfo">
                         <p class="clientName">{{clientShown.client.cliente}}</p>
                         <img ng-src="{{clientShown.client.imagen}}">

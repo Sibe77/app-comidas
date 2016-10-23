@@ -83,6 +83,26 @@ myApp.controller('appController', ['$scope', function($scope) {
 				return {client: currentClient, matchedProducts: [], hours: hours};
 			};
 
+			var splitOpenClosedMatches = function (matches) {
+				var allMatchesSplitted = _.groupBy(matches,
+					function (local) {
+						if (local.openData.isOpen === true) {
+							return "open";
+						} else if (local.openData.openTime != undefined) {
+							return "openLater";
+						} else {
+							return "closed";
+						}
+					}
+				);
+				allMatchesSplitted.openLater = _.sortBy(allMatchesSplitted.openLater, [
+					function (local) {
+						return local.openData.openTime;
+					}
+				]);
+				return allMatchesSplitted;
+			}
+
 			var output = [];
 			var clientList = [];
 
@@ -109,7 +129,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				output.push(clientList[client]);
 			}
 
-			return output;
+			return splitOpenClosedMatches(output);
 		};
 
 		// -----------------//
@@ -127,7 +147,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		$scope.clientsShown = getMatches(searchedWords);
 
-		if ($scope.clientsShown.length > 0){
+		if ($scope.clientsShown.open.length > 0 || $scope.clientsShown.openLater.length > 0 || $scope.clientsShown.closed.length > 0) {
 			$scope.noResults = false;
 		}
 	}
