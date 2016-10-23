@@ -82,8 +82,11 @@
                         </div>
                     </div>
 
-                    <div ng-if="!isStoreOpen(clientShown)" class="openClosedSign">
-                        <h3>Cerrado</h3>
+                    <div ng-if="!clientShown.openData.isOpen" class="openClosedSign">
+                        <h3 ng-class="clientShown.openData.openTime == undefined ? 'noOpenTime' : ''">Cerrado</h3>
+                        <p ng-if="clientShown.openData.openTime != undefined">
+                            Abrimos a las {{clientShown.openData.openTime}}
+                        </p>
                     </div>
 
                     <div class="matchedProducts">
