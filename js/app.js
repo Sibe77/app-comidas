@@ -305,9 +305,9 @@ myApp.controller('appController', ['$scope', function($scope) {
 					smallestTime = open2;
 				} else {
 					biggestHour = open2hour;
-					biggestTime = open1;
+					biggestTime = open2;
 					smallestHour = open1hour;
-					smallestTime = open2;
+					smallestTime = open1;
 				}
 
 				if (currTime < smallestHour)
