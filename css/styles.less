@@ -245,12 +245,18 @@ body {
 					border-top: 3px solid @mostaza;
 					background-color: white;
 				}
+				@media @mobile {
+					padding: 10px;
+				}
 
 				.direccion {
 					font-family: 'Baloo Tamma';
 					font-weight: lighter;
 					@media @mobile {
 						float: left;
+						text-align: left;
+						line-height: 14px;
+						margin: 0;
 					}
 				}
 
@@ -259,6 +265,8 @@ body {
 					font-weight: lighter;
 					@media @mobile {
 						float: right;
+						line-height: 14px;
+						margin: 0;
 					}
 				}
 
@@ -311,9 +319,9 @@ body {
 				}
 				@media @desktop {
 					position: absolute;
-				    right: 10px;
-				    top: 23px;
-				    margin: 0;
+					right: 10px;
+					top: 23px;
+					margin: 0;
 				}
 			}
 		}

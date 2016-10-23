@@ -243,6 +243,11 @@ body.loading {
     background-color: white;
   }
 }
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .clientInfo .contacto {
+    padding: 10px;
+  }
+}
 #resultsScreen .clientCard .clientInfo .contacto .direccion {
   font-family: 'Baloo Tamma';
   font-weight: lighter;
@@ -250,6 +255,9 @@ body.loading {
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard .clientInfo .contacto .direccion {
     float: left;
+    text-align: left;
+    line-height: 14px;
+    margin: 0;
   }
 }
 #resultsScreen .clientCard .clientInfo .contacto .telefono {
@@ -259,6 +267,8 @@ body.loading {
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard .clientInfo .contacto .telefono {
     float: right;
+    line-height: 14px;
+    margin: 0;
   }
 }
 #resultsScreen .clientCard .clientInfo .contacto p {
