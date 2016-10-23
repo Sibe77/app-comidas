@@ -147,7 +147,9 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		$scope.clientsShown = getMatches(searchedWords);
 
-		if ($scope.clientsShown.open.length > 0 || $scope.clientsShown.openLater.length > 0 || $scope.clientsShown.closed.length > 0) {
+		if (($scope.clientsShown.open != undefined && $scope.clientsShown.open.length > 0) 
+			|| ($scope.clientsShown.openLater != undefined && $scope.clientsShown.openLater.length > 0) 
+			|| ($scope.clientsShown.closed != undefined && $scope.clientsShown.closed.length > 0)) {
 			$scope.noResults = false;
 		}
 	}
