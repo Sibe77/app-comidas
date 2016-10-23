@@ -28,7 +28,7 @@ body {
 }
 @media only screen and (max-width: 799px) {
   body {
-    padding-top: 55px;
+    padding-top: 60px;
     background-color: #e6e6e6;
   }
 }
@@ -162,7 +162,9 @@ body.loading {
 }
 @media only screen and (max-width: 799px) {
   #resultsScreen .clientCard {
-    margin: 0 5px 20px;
+    margin: 0 10px 20px;
+    padding: 5px;
+    overflow: hidden;
   }
 }
 @media only screen and (min-width:800px) {
@@ -283,19 +285,23 @@ body.loading {
   #resultsScreen .clientCard .openClosedSign {
     position: absolute;
     width: 102%;
-    top: 100px;
-    left: -1%;
+    top: 46px;
+    left: -30%;
+    transform: rotate(-45deg);
     -webkit-box-shadow: 0px 0px 15px 0px black;
     -moz-box-shadow: 0px 0px 15px 0px black;
     box-shadow: 0px 0px 15px 0px black;
   }
 }
-#resultsScreen .clientCard .matchedProducts {
-  padding: 10px;
-}
 @media only screen and (min-width:800px) {
   #resultsScreen .clientCard .matchedProducts {
     overflow: auto;
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 799px) {
+  #resultsScreen .clientCard .matchedProducts {
+    padding: 10px 5px;
   }
 }
 #resultsScreen .clientCard .matchedProducts .product {
