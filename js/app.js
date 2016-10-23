@@ -41,8 +41,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 		var getMatches = function (searchedWords) {
 			var matchesClient = function (cliente, searchedWords) {
 				var clientWordsMatched = 0;
-				var currentClientNumberOfWords = cliente.split(" ").length;
 				var currentClient = accentsTidyAndLowercase(cliente);
+				var currentClientNumberOfWords = getWordsToSearch(currentClient).length;
 
 				_.each(searchedWords, function (searchedWord) {
 					var searchQuery = new RegExp("\\b"+searchedWord, "i");
