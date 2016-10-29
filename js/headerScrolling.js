@@ -15,9 +15,7 @@ setInterval(function() {
 }, 250);
 
 function hasScrolled() {
-    console.log("scrolleo");
     var st = $(this).scrollTop();
-    console.log("navbarHeight", navbarHeight);
     // Make sure they scroll more than delta
     if(Math.abs(lastScrollTop - st) <= delta)
         return;
@@ -27,12 +25,10 @@ function hasScrolled() {
     if (st > lastScrollTop && st > navbarHeight){
         // Scroll Down
         $('#searchBox').removeClass('nav-down').addClass('nav-up');
-        console.log("Scroll abajo");
     } else {
         // Scroll Up
         if(st + $(window).height() < $(document).height()) {
             $('#searchBox').removeClass('nav-up').addClass('nav-down');
-            console.log("Scroll up")
         }
     }
     
