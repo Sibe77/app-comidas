@@ -74,18 +74,36 @@ body {
 /* SEARCH BOX */
 #searchBox {
 	display:flex;
-	position: fixed;
-	top: 0;
 	flex-direction:row;
 	-webkit-box-shadow: 0px 0px 15px 0px black;
 	-moz-box-shadow:    0px 0px 15px 0px black;
 	box-shadow:         0px 0px 15px 0px black;
 	z-index: 1;
-	width: 100vw;
 	@media @desktop {
 		position: static;
 		margin: 0 auto 70px;
 		width: 60vw;
+	}
+	@media @mobile {
+		position: fixed;
+		top: 0;
+		width: 100vw;
+		-webkit-transition: top 0.3s; /* Safari */
+		transition: top 0.3s;
+	}
+
+	&.nav-up {
+		@media @mobile {
+			transition-timing-function: ease-in;
+			top: -50px;
+		}
+	}
+
+	&.nav-down {
+		@media @mobile {
+			transition-timing-function: ease-out;
+			top: 0;
+		}
 	}
 
 	#searchterm {

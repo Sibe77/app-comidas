@@ -46,7 +46,7 @@
     <div ng-if="loadComplete" ng-cloak>
         <!-- GENERAL SEARCH BOX -->
         <form id="searchBox" autocomplete="off">
-            <input type="text" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" ng-focus="isSearchBoxFocused = true" ng-blur="isSearchBoxFocused = false" />
+            <input type="text" class="field" id="searchterm" ng-model="searchText" placeholder="Buscar en Nueva Córdoba" ng-focus="isSearchBoxFocused = true" ng-blur="isSearchBoxFocused = false" />
 
             <button type="submit" id="search" ng-click="search(searchText)">
                 <img src="images/go.png">

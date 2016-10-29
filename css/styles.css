@@ -55,20 +55,40 @@ body.loading {
 /* SEARCH BOX */
 #searchBox {
   display: flex;
-  position: fixed;
-  top: 0;
   flex-direction: row;
   -webkit-box-shadow: 0px 0px 15px 0px black;
   -moz-box-shadow: 0px 0px 15px 0px black;
   box-shadow: 0px 0px 15px 0px black;
   z-index: 1;
-  width: 100vw;
 }
 @media only screen and (min-width:800px) {
   #searchBox {
     position: static;
     margin: 0 auto 70px;
     width: 60vw;
+  }
+}
+@media only screen and (max-width: 799px) {
+  #searchBox {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    -webkit-transition: top 0.3s;
+    /* Safari */
+  
+    transition: top 0.3s;
+  }
+}
+@media only screen and (max-width: 799px) {
+  #searchBox.nav-up {
+    transition-timing-function: ease-in;
+    top: -50px;
+  }
+}
+@media only screen and (max-width: 799px) {
+  #searchBox.nav-down {
+    transition-timing-function: ease-out;
+    top: 0;
   }
 }
 #searchBox #searchterm {
