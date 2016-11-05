@@ -12,3 +12,7 @@ Uso en desarrollo
 
 Build para produccion
 	$ gulp build
+	$ cd /dist
+	$ git add .
+	$ git commit -m "New version"
+	$ git push deploy master
