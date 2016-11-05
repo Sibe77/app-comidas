@@ -78,7 +78,7 @@ gulp.task('serve', ['developmentBuildTmp'], function() {
 gulp.task('fonts:prod', function() {
 	return gulp.src('src/style/fonts/*')
 		.pipe(plumber())
-		.pipe(gulp.dest('docs/style/fonts'))
+		.pipe(gulp.dest('dist/style/fonts'))
 });
 gulp.task('less:prod', function() {
 	return gulp.src('src/style/styles.less')
@@ -89,28 +89,28 @@ gulp.task('less:prod', function() {
 			cascade: false
 		}))
 		.pipe(cssmin())
-		.pipe(gulp.dest('docs/style'));
+		.pipe(gulp.dest('dist/style'));
 });
 gulp.task('styles:prod', ['fonts:prod','less:prod']);
 
 gulp.task('images:prod', function() {
 	return gulp.src('src/images/*')
 		.pipe(plumber())
-		.pipe(gulp.dest('docs/images'))
+		.pipe(gulp.dest('dist/images'))
 });
 
 gulp.task('html:prod', function() {
 	return gulp.src('src/index.html')
 		.pipe(plumber())
 		.pipe(minifyHTML({}))
-		.pipe(gulp.dest('docs'))
+		.pipe(gulp.dest('dist'))
 });
 
 gulp.task('js:prod', function() {
 	return gulp.src('src/js/*')
 		.pipe(plumber())
 		.pipe(uglify({compress:true}))
-		.pipe(gulp.dest('docs/js'))
+		.pipe(gulp.dest('dist/js'))
 });
 
 gulp.task('build',['styles:prod','images:prod','html:prod','js:prod']);
