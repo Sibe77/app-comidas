@@ -116,7 +116,6 @@ gulp.task('js:prod', function() {
 gulp.task('cname:prod', function() {
 	return gulp.src('CNAME')
 		.pipe(plumber())
-		.pipe(uglify({compress:true}))
 		.pipe(gulp.dest('dist'))
 });
 
