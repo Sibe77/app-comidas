@@ -220,7 +220,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/productos',
 				headers: {
 					'Accept': 'application/json',
-					'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+					//'Authorization': 'Basic ' + btoa('key-password')
 				},
 				success: function (productsData) {
 					$scope.$apply(function(){
@@ -240,7 +240,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/clientes',
 				headers: {
 					'Accept': 'application/json',
-					'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+					//'Authorization': 'Basic ' + btoa('key-password')
 				},
 				success: function (clientsData) {
 					$scope.$apply(function(){
@@ -260,7 +260,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				url: 'https://api.fieldbook.com/v1/57efcbd80cfca603001a8a2d/horarios',
 				headers: {
 					'Accept': 'application/json',
-					'Authorization': 'Basic ' + btoa('key-1:PXr9ESuD_uMBnByvDtS3')
+					//'Authorization': 'Basic ' + btoa('key-password')
 				},
 				success: function (hoursData) {
 					$scope.$apply(function(){
