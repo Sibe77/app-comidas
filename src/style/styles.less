@@ -65,8 +65,8 @@ body {
 		z-index: -1;
 	}
 
-	/* Page Loading */
-	&.loadingOrLandingPage {
+	/* Any page but product listing page*/
+	&.notShowingProducts {
 		overflow: hidden;
 	}
 }
@@ -193,6 +193,9 @@ body {
 		font-weight: lighter;
 		color: @mostaza;
 		text-align: center;
+		@media @desktop {
+			padding: 0 20vw;
+		}
 	}
 }
 
