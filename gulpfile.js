@@ -113,4 +113,11 @@ gulp.task('js:prod', function() {
 		.pipe(gulp.dest('dist/js'))
 });
 
-gulp.task('build',['styles:prod','images:prod','html:prod','js:prod']);
+gulp.task('cname:prod', function() {
+	return gulp.src('CNAME')
+		.pipe(plumber())
+		.pipe(uglify({compress:true}))
+		.pipe(gulp.dest('dist'))
+});
+
+gulp.task('build',['styles:prod','images:prod','html:prod','js:prod','cname:prod']);
