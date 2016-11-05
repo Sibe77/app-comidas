@@ -1,0 +1,397 @@
+// Media Queries
+@desktop:   ~"only screen and (min-width:800px)";
+@mobile:    ~"only screen and (max-width: 799px)";
+
+// Colors
+@mostaza: #f69323;
+@white: #fff;
+@black: #000;
+@text: #002448;
+@lightBase: #E6E6E6;
+@darkBase: #313131;
+
+// Fonts
+@font-face {
+	font-family: 'Baloo Tamma';
+	src: url('fonts/BalooTamma-Regular.eot');
+	src: url('fonts/BalooTamma-Regular.eot?#iefix') format('embedded-opentype'), 
+	url('fonts/BalooTamma-Regular.woff2') format('woff2'), 
+	url('fonts/BalooTamma-Regular.woff') format('woff'), 
+	url('fonts/BalooTamma-Regular.ttf')  format('truetype'), 
+	url('fonts/BalooTamma-Regular.svg#svgFontName') format('svg');
+}
+
+// Mixins
+.clientDataOverImage {
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	color: darken(#007FB2, 30%);
+	left: 0;
+	@media @mobile {
+		background: fade(lightgray, 60%);
+	}
+}
+
+/* GENERAL PROPERTIES */ 
+* {
+	margin: 0;
+	padding: 0;
+	font: 12pt Arial;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+body {
+	min-height: 100vh;
+	@media @mobile {
+		padding-top: 60px;
+		background-color: @lightBase;
+	}
+	@media @desktop {
+		padding-top: 85px;
+		background-color: @darkBase;
+	}
+
+	&::after {
+		content: "";
+		background: url("../images/backgroundPattern.png");
+		opacity: 0.2;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: fixed;
+		z-index: -1;
+	}
+
+	/* Page Loading */
+	&.loading {
+		overflow: hidden;
+	}
+}
+
+/* SEARCH BOX */
+#searchBox {
+	display:flex;
+	flex-direction:row;
+	-webkit-box-shadow: 0px 0px 15px 0px black;
+	-moz-box-shadow:    0px 0px 15px 0px black;
+	box-shadow:         0px 0px 15px 0px black;
+	z-index: 1;
+	@media @desktop {
+		position: static;
+		margin: 0 auto 70px;
+		width: 60vw;
+	}
+	@media @mobile {
+		position: fixed;
+		top: 0;
+		width: 100vw;
+		-webkit-transition: top 0.3s; /* Safari */
+		transition: top 0.3s;
+	}
+
+	&.nav-up {
+		@media @mobile {
+			transition-timing-function: ease-in;
+			top: -50px;
+		}
+	}
+
+	&.nav-down {
+		@media @mobile {
+			transition-timing-function: ease-out;
+			top: 0;
+		}
+	}
+
+	#searchterm {
+		width: 0;
+		height: 47px;
+	}
+
+	&>input[type=text],
+	&>button {
+		display:block;
+		font-family: 'Baloo Tamma';
+	}
+
+	&>input[type=text] {
+		flex:1;
+		padding:0.6em;
+		border:0.2em solid @mostaza;
+	}
+
+	&>button {
+		padding:0.6em 0.8em;
+		background-color: @mostaza;
+		border:none;
+		img {
+			width: 25px;	
+		}
+	}
+}
+
+.logo {
+	width: 40vw;
+	bottom: 9vh;
+	left: 30vw;
+	position: absolute;
+	@media @desktop {
+		width: 12vw;
+		position: absolute;
+		bottom: 7vh;
+		left: 44vw;
+	}
+}
+
+/* LOADING SCREEN */
+#loadingScreen {
+	font-family: 'Baloo Tamma';
+	font-weight: lighter;
+	color: @mostaza;
+	text-align: center;
+}
+
+/* HOME SCREEN */
+#homeScreen {
+	/* NO FOCUS ON SEARCH BOX */
+	.promotionalText {
+		width: 90vw;
+		position: absolute;
+		left: 5vw;
+		bottom: 60vh;
+		@media @desktop {
+			width: 50vw;
+			position: absolute;
+			top: 32vh;
+			left: 25vw;
+		}
+	}
+
+	/* FOCUS ON SEARCH BOX */
+	&.isSearchBoxFocused {
+		.promotionalText {
+			@media @mobile {
+				top: 40vh;
+			}
+		}
+
+		.logo{
+			@media @mobile {
+				display: none;
+			}
+		}
+	}
+}
+
+/* NO RESULTS SCREEN */
+#noResultsScreen {
+	.noResultsHeader{
+		font-family: 'Baloo Tamma';
+		font-weight: lighter;
+		color: @mostaza;
+		text-align: center;
+	}
+}
+
+/* RESULTS SCREEN */
+#resultsScreen {
+	.clientCard {
+		background-color: white;
+		-webkit-box-shadow: 0px 0px 15px 0px black;
+		-moz-box-shadow:    0px 0px 15px 0px black;
+		box-shadow:         0px 0px 15px 0px black;
+		position: relative;
+		@media @mobile {
+			margin: 0 10px 20px;
+			padding: 5px;
+			overflow: hidden;
+		}
+		@media @desktop {
+			width: 80%;
+			margin: 30px 10%;
+			min-height: 300px;
+		}
+
+		.clientInfo {
+			width: 100%;
+			height: 260px;
+			position: relative;
+			@media @desktop {
+				position: static;
+				margin: 30px 10px;
+				float: left;
+				width: 250px;
+				height: 250px;
+				border: solid @mostaza;
+			}
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.clientName {
+				.clientDataOverImage;
+				width: 100%;
+				text-align: center;
+				font-family: 'Baloo Tamma';
+				position: absolute;
+				top: 0;
+				@media @mobile {
+					background: transparent;
+				}
+				@media @desktop {
+					width: 270px;
+					top: 18px;
+				}
+			}
+
+			.contacto {
+				padding-right: 10px;
+				padding-left: 10px;
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				.clientDataOverImage;
+				@media @desktop {
+					width: 250px;
+					margin-left: 10px;
+					bottom: 20px;
+					border-top: 3px solid @mostaza;
+					background-color: white;
+				}
+				@media @mobile {
+					padding: 10px;
+				}
+
+				.direccion {
+					font-family: 'Baloo Tamma';
+					font-weight: lighter;
+					@media @mobile {
+						float: left;
+						text-align: left;
+						line-height: 14px;
+						margin: 0;
+					}
+				}
+
+				.telefono {
+					font-family: 'Baloo Tamma';
+					font-weight: lighter;
+					@media @mobile {
+						float: right;
+						line-height: 14px;
+						margin: 0;
+					}
+				}
+
+				p {
+					font-size: 11pt;
+					font-weight: lighter;
+					font-family: baloo tamma;
+					text-align: center;
+					@media @desktop {
+						color: @text;
+						margin: 0;
+					}
+				}	
+			}
+		}
+
+		.openClosedSign {
+			background: red;
+			color: white;
+			font-weight: bold;
+			font-family: "baloo tamma";
+			padding-top: 1px;
+			text-align: center;
+			@media @mobile {
+				position: absolute;
+				width: 102%;
+				top: 46px;
+				left: -30%;
+				transform: rotate(-45deg);
+				-webkit-box-shadow: 0px 0px 15px 0px black;
+				-moz-box-shadow:    0px 0px 15px 0px black;
+				box-shadow:         0px 0px 15px 0px black;
+			}
+
+			h3 {
+				@media @mobile {
+					margin: 0;
+				}
+
+				&.noOpenTime {
+					@media @mobile {
+						padding: 10px;
+					}
+				}
+			}
+
+			p {
+				@media @mobile {
+					margin: 0;
+				}
+				@media @desktop {
+					position: absolute;
+					right: 10px;
+					top: 23px;
+					margin: 0;
+				}
+			}
+		}
+
+		.matchedProducts {
+			@media @desktop {
+				overflow: auto;
+				padding: 10px;
+			}
+			@media @mobile {
+				padding: 10px 5px;
+			}
+
+
+			.product {
+				margin: 10px 0;
+				overflow: hidden;
+				@media @desktop {
+					padding-bottom: 10px;
+					border-bottom: dashed 1px lightgray;
+				}
+
+				&:last-child {
+					@media @desktop {
+						border-bottom: 0;
+					}
+				}
+
+				h5 {
+					margin: 0;
+
+					&.productName {
+						color: @text;
+						font-weight: bold;
+						overflow: hidden;
+						font-size: 16px;
+					}
+
+					&.descripcion {
+						font-size: 10pt;
+						color: @text;
+					}
+
+					&.price {
+						float: right;
+						font-family: 'Baloo Tamma';
+						font-weight: lighter;
+						color: @mostaza;
+						font-size: 16px;
+					}
+				}
+			}
+		}	
+	}
+}
