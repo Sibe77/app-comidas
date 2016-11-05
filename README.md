@@ -4,22 +4,14 @@ Aquí se lleva a cabo el desarrollo de la web mobile y desktop.
 
 Instalacion
 
-1 - Clonar el repositorio
+	$ git clone https://github.com/Sibe77/development.git
 
-2 - $ npm install
+	$ npm install
 
 Uso en desarrollo
 
 	$ gulp serve
 
-Build para produccion
+Build para produccion (se hará el build en la carpeta "dist")
 
 	$ gulp build
-
-	$ cd dist
-
-	$ git add .
-
-	$ git commit -m "New version"
-
-	$ git push deploy master
