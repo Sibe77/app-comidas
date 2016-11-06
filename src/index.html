@@ -64,7 +64,7 @@
             <!-- end HOME SCREEN -->
 
             <!-- NO RESULTS SCREEN -->
-            <div ng-if="noResults" id="noResultsScreen">
+            <div ng-if="noResults" id="noResultsScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''">
                 <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h2>
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
