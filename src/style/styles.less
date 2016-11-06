@@ -81,7 +81,7 @@ body {
 	z-index: 1;
 	@media @desktop {
 		position: static;
-		margin: 0 auto 70px;
+		margin: 0 auto -27px;
 		width: 60vw;
 	}
 	@media @mobile {
@@ -103,6 +103,14 @@ body {
 		@media @mobile {
 			transition-timing-function: ease-out;
 			top: 0;
+		}
+	}
+
+	&.desktopFixed {
+		@media @desktop {
+			position: fixed;
+			top: 10px;
+			left: 20vw;
 		}
 	}
 
@@ -201,6 +209,10 @@ body {
 
 /* RESULTS SCREEN */
 #resultsScreen {
+	@media @desktop {
+		margin-top: 120px;
+	}
+
 	.clientCard {
 		background-color: white;
 		-webkit-box-shadow: 0px 0px 15px 0px black;

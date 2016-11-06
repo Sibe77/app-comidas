@@ -60,6 +60,7 @@ gulp.task('developmentBuildTmp',['styles','images','html','js']);
 gulp.task('watch', function() {
 	gulp.watch('src/style/styles.less', ['less']);
 	gulp.watch('src/index.html', ['html']);
+	gulp.watch('src/js/*', ['js']);
 });
 
 // Builds the tmp development dir, serves it, and reload the browser on style changes

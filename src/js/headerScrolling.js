@@ -34,3 +34,14 @@ function hasScrolled() {
     
     lastScrollTop = st;
 }
+
+// for desktop
+
+$(window).bind('scroll', function () {
+    console.log($(window).scrollTop());
+    if ($(window).scrollTop() > 75) {
+        $('#searchBox').addClass('desktopFixed');
+    } else {
+        $('#searchBox').removeClass('desktopFixed');
+    }
+});
