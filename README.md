@@ -6,9 +6,9 @@ Instalacion
 
 	$ git clone https://github.com/Sibe77/development.git
 
-	$ npm install
+	$ cd development
 
-Uso en desarrollo
+	$ npm install
 
 	$ gulp serve
 
