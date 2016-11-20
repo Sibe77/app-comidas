@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp',[]);
 
 myApp.controller('appController', ['$scope', function($scope) {
-	$scope.isMobile = window.innerWidth <= 800 ? true : false;
+	$scope.isMobile = (window.innerWidth <= 600 || window.innerHeight <= 500) ? true : false;
 	$scope.isSearchBoxFocused; // Gotten from #searchterm text field on the view
 
 	$scope.clientsShown;
