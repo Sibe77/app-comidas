@@ -22,7 +22,8 @@ myApp.controller('appController', ['$scope', function($scope) {
 				['lomo','lomito'],
 				['whiskey', 'whiski', 'wisky', 'whisky', 'wiskey', 'wiski'],
 				['sandwich','sanguche','sanguich'],
-				['cerveza', 'birra', 'cervesa']
+				['cerveza', 'birra', 'cervesa'],
+				['pizza', 'piza', 'pisa']
 			];
 			var related = '';
 			_.each(productWords, function (productWord) {
