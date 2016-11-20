@@ -76,10 +76,11 @@
                 <div class="clientCard" ng-repeat="clientShown in clientsShown.open">
                     <div class="clientInfo">
                         <p class="clientName">{{clientShown.client.cliente}}</p>
-                        <img ng-src="{{clientShown.client.imagen}}">
+                        <img class="clientImage" ng-src="{{clientShown.client.imagen}}">
                         <div class="contacto">
                             <p class="direccion">{{clientShown.client.direccion}}</p>
-                            <p class="telefono">{{clientShown.client.telefono}}</p>
+                            <p ng-if="!isMobile" class="telefono">{{clientShown.client.telefono}}</p>
+                            <a ng-if="isMobile" ng-href="tel:{{clientShown.client.telefono}}"><img src="images/callIcon.png" /></a>
                         </div>
                     </div>
 
@@ -103,7 +104,7 @@
                 <div class="clientCard" ng-repeat="clientShown in clientsShown.openLater">
                     <div class="clientInfo">
                         <p class="clientName">{{clientShown.client.cliente}}</p>
-                        <img ng-src="{{clientShown.client.imagen}}">
+                        <img class="clientImage" ng-src="{{clientShown.client.imagen}}">
                         <div class="contacto">
                             <p class="direccion">{{clientShown.client.direccion}}</p>
                             <p class="telefono">{{clientShown.client.telefono}}</p>
@@ -130,7 +131,7 @@
                 <div class="clientCard" ng-repeat="clientShown in clientsShown.closed">
                     <div class="clientInfo">
                         <p class="clientName">{{clientShown.client.cliente}}</p>
-                        <img ng-src="{{clientShown.client.imagen}}">
+                        <img class="clientImage" ng-src="{{clientShown.client.imagen}}">
                         <div class="contacto">
                             <p class="direccion">{{clientShown.client.direccion}}</p>
                             <p class="telefono">{{clientShown.client.telefono}}</p>
