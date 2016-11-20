@@ -36,7 +36,7 @@
 <body ng-app="myApp" ng-controller="appController" ng-class="!loadComplete || clientsShown == null || noResults ? 'notShowingProducts' : ''">
 
     <!-- LOADING SCREEN -->
-    <div id="loadingScreen" ng-if="!loadComplete">
+    <div id="loadingScreen" ng-if="!loadComplete" class="textAndLogo">
         <h2>CARGANDO...</h2>
         <img src="images/logo.png" class="logo">
     </div>
@@ -57,14 +57,14 @@
         <!-- SCREENS-->
         <div>
             <!-- HOME SCREEN -->
-            <div ng-if="clientsShown == null" id="homeScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''">
+            <div ng-if="clientsShown == null" id="homeScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''" class="textAndLogo">
                 <img src="images/queSeTeAntoja.png" class="promotionalText">
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
             <!-- end HOME SCREEN -->
 
             <!-- NO RESULTS SCREEN -->
-            <div ng-if="noResults" id="noResultsScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''">
+            <div ng-if="noResults" id="noResultsScreen" ng-class="isSearchBoxFocused ? 'isSearchBoxFocused' : ''" class="textAndLogo">
                 <h2 class="noResultsHeader">No se encontraron productos que coincidan con la búsqueda, probá de nuevo con otras palabras :)</h2>
                 <img src="images/logo.png" class="logo" ng-click="logoPressed()">
             </div>
