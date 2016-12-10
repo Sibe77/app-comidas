@@ -171,9 +171,6 @@ myApp.controller('appController', ['$scope', function($scope) {
 
 		// -----------------//
 
-		// Analytics
-		ga('send', 'pageview', 'search?searchText=' + filter);
-
 		document.getElementById('searchterm').blur();
 
 		$scope.noResults = true;
@@ -188,6 +185,13 @@ myApp.controller('appController', ['$scope', function($scope) {
 			|| ($scope.clientsShown.openLater != undefined && $scope.clientsShown.openLater.length > 0) 
 			|| ($scope.clientsShown.closed != undefined && $scope.clientsShown.closed.length > 0)) {
 			$scope.noResults = false;
+		}
+
+		// Analytics
+		if ($scope.noResults) {
+			ga('send', 'pageview', 'search?searchText=' + filter.toLowerCase() + ' (Not Found)');
+		} else {
+			ga('send', 'pageview', 'search?searchText=' + filter.toLowerCase());
 		}
 	}
 
