@@ -105,7 +105,7 @@ myApp.controller('appController', ['$scope', function($scope) {
 				var hours = [];
 				// Agregamos las horas al correspondiente cliente
 				_.each(allHours, function (currentHours) {
-					if (currentHours.cliente[0].cliente === cliente) {
+					if (currentHours.cliente[0] && currentHours.cliente[0].cliente === cliente) {
 						hours.push(currentHours);
 					}
 				});

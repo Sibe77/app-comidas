@@ -10,6 +10,8 @@ Instalacion
 
 	$ npm install
 
+	$ sudo npm install -g gulp
+
 	$ gulp serve
 
 Build para produccion (se hará el build en la carpeta "dist")
