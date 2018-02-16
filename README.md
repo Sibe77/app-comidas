@@ -12,7 +12,16 @@ Instalacion
 
 	$ sudo npm install -g gulp
 
+Desarrollo
+	// Terminal 1
+
 	$ gulp serve
+
+	// Terminal 2
+
+	$ cd mobile
+
+	$ phonegap serve --port 3030
 
 Build para produccion (se hará el build en la carpeta "dist")
 

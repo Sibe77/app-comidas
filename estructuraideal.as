@@ -1,0 +1,52 @@
+app/
+----- shared/   // acts as reusable components or partials of our site
+---------- search-bar/
+--------------- search-bar-Directive.js
+--------------- search-bar-Service.js
+--------------- search-bar-View.html
+---------- footer-menu/
+--------------- footer-menu-Directive.js
+--------------- footer-menu-Service.js
+--------------- footer-menu-View.html
+---------- client-card/
+--------------- client-card-Directive.js
+--------------- client-card-View.html
+---------- product-list/
+--------------- client-card-Directive.js
+--------------- client-card-View.html
+---------- closed-sign/
+--------------- closed-sign-Directive.js
+--------------- closed-sign-View.html
+----- components/   // each component is treated as a mini Angular app
+---------- location-selection/
+--------------- location-selection-Controller.js
+--------------- location-selection-Service.js
+--------------- location-selection-View.html
+---------- home/
+--------------- home-Controller.js
+--------------- home-Service.js
+--------------- home-View.html
+---------- results/
+--------------- results-Controller.js
+--------------- results-Service.js
+--------------- results-View.html
+---------- no-results/
+--------------- no-results-Controller.js
+--------------- no-results-Service.js
+--------------- no-results-View.html
+---------- product-suggestions/
+--------------- product-suggestions-Controller.js
+--------------- product-suggestions-Service.js
+--------------- product-suggestions-View.html
+---------- store-suggestions/
+--------------- store-suggestions-Controller.js
+--------------- store-suggestions-Service.js
+--------------- store-suggestions-View.html
+----- app.module.js
+----- app.routes.js
+assets/
+----- img/      // Images and icons for your app
+----- css/      // All styles and style related files (SCSS or LESS files)
+----- js/       // JavaScript files written for your app that are not for angular
+----- libs/     // Third-party libraries such as jQuery, Moment, Underscore, etc.
+index.html

@@ -1,0 +1,6 @@
+<h3 class="suggestionsHeader">Productos sugeridos:</h3>
+<div id="searchSuggestionsButtonsContainer">
+	<div class="searchSuggestionsButton" ng-repeat="sugerencia in locationInfo.sugerencias | orderBy: sugerencia" ng-click="doSearch(sugerencia)">
+		<h4 class="searchSuggestionsText" ng-bind="sugerencia"></h4>
+	</div>
+</div>

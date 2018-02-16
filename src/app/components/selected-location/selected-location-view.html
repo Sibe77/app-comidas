@@ -1,0 +1,18 @@
+<div ng-class="!loadComplete || clientsShown == null || noResults ? 'notShowingProducts' : ''">
+	<!-- LOADING -->
+	<div ng-if="!loadComplete"  id="loadingScreen" class="textAndLogo">
+		<img src="assets/img/Rolling.gif" id="loadingSpinner">
+	</div>
+	<!-- end LOADING -->
+
+	<!-- POST-LOAD LAYOUT -->
+	<div ng-if="loadComplete" ng-cloak>
+		<!-- GENERAL SEARCH BOX -->
+		<search-bar></search-bar>
+		<!-- SCREENS-->
+			<ui-view></ui-view>
+		<!-- end SCREENS -->
+		<footer></footer> 
+	</div>
+	<!-- end POST-LOAD LAYOUT -->
+</div>

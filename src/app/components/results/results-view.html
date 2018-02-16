@@ -1,0 +1,8 @@
+<div id="resultsScreen">
+	<!-- OPEN NOW -->
+	<store-card ng-repeat="clientShown in clientsShown.open"></store-card>
+	<!-- OPEN LATER -->
+	<store-card ng-repeat="clientShown in clientsShown.openLater"></store-card>
+	<!-- CLOSED -->
+	<store-card ng-repeat="clientShown in clientsShown.closed"></store-card>
+</div>

@@ -3,13 +3,21 @@
 @mobile:    ~"only screen and (max-width: 600px), screen and (max-height: 500px)";
 
 // Colors
-@mostaza: #f69323;
+@mostaza: #FF9E0C;
+@mostazaOscuro: #f29200;
+@green: #306B34;
+@red: #A31621;
 @white: #fff;
 @black: #000;
-@text: #002448;
+@text: #4f4f4f;
+@blue: #2A5862;
 @lightBase: #E6E6E6;
-@darkBase: #444;
-@callGreen: #3c763d;
+@darkBase: rgba(42, 66, 78, 1);
+@callGreen: #447604;
+
+// Shadows
+
+@buttonShadow: 0px 2px 5px 0px black;
 
 // Fonts
 @font-face {
@@ -46,10 +54,8 @@
 }
 
 body {
-	min-height: 100vh;
 	@media @mobile {
-		padding-top: 60px;
-		background-color: @lightBase;
+		background-color: @darkBase;
 	}
 	@media @desktop {
 		padding-top: 85px;
@@ -58,7 +64,7 @@ body {
 
 	&::after {
 		content: "";
-		background: url("../images/backgroundPattern.png");
+		background: url("../img/backgroundPattern.png");
 		opacity: 0.2;
 		top: 0;
 		left: 0;
@@ -76,22 +82,15 @@ body {
 
 /* SEARCH BOX */
 #searchBox {
-	display:flex;
+	display:none;
 	flex-direction:row;
-	-webkit-box-shadow: 0px 0px 15px 0px black;
-	-moz-box-shadow:    0px 0px 15px 0px black;
-	box-shadow:         0px 0px 15px 0px black;
-	z-index: 1;
+	z-index: 2;
 	@media @desktop {
-		position: static;
 		margin: 0 auto 70px;
 		width: 60vw;
 	}
 	@media @mobile {
-		position: fixed;
-		top: 0;
-		width: 100vw;
-		-webkit-transition: top 0.3s; /* Safari */
+		padding: 66px 26px 0;
 		transition: top 0.3s;
 	}
 
@@ -105,7 +104,7 @@ body {
 	&.nav-down {
 		@media @mobile {
 			transition-timing-function: ease-out;
-			top: 0;
+			top: 39px;
 		}
 	}
 
@@ -131,7 +130,7 @@ body {
 		background-color: @mostaza;
 		border:none;
 		img {
-			width: 25px;	
+			width: 15px;	
 		}
 	}
 }
@@ -149,6 +148,10 @@ body {
 	font-weight: lighter;
 	color: @mostaza;
 	text-align: center;
+}
+
+#loadingSpinner {
+	width: 64px;
 }
 
 /* HOME SCREEN */
@@ -208,21 +211,53 @@ body {
 
 /* RESULTS SCREEN */
 #resultsScreen {
+	@media @mobile {
+		padding: 60px 0 0;
+	}
+	@media @desktop {
+		padding-bottom: 35px;
+	}
 	.clientCard {
 		background-color: white;
-		-webkit-box-shadow: 0px 0px 15px 0px black;
-		-moz-box-shadow:    0px 0px 15px 0px black;
-		box-shadow:         0px 0px 15px 0px black;
 		position: relative;
 		@media @mobile {
-			margin: 0 10px 20px;
+			margin: 0 10px 30px;
 			padding: 5px;
 			overflow: hidden;
 		}
 		@media @desktop {
 			width: 80%;
 			margin: 30px 10%;
-			min-height: 300px;
+			min-height: 400px;
+		}
+
+		.products-header {
+			font-size: 24px;
+			text-align: center;
+			font-family: baloo tamma;
+			color: @text;
+
+			@media @mobile {
+				margin-top: 35px;
+			}
+			@media @desktop {
+				margin-top: 20px;
+			}
+		}
+
+		.fullCardButton {
+			background: @mostaza;
+			font-family: baloo tamma;
+			text-align: center;
+			box-shadow: @buttonShadow;
+			@media @mobile {
+				margin: 15px 0 0;
+				padding: 3px 0;
+			}
+			@media @desktop {
+				margin: 15px 0 0;
+				padding: 3px 0;
+			}
 		}
 
 		.clientInfo {
@@ -235,17 +270,25 @@ body {
 				float: left;
 				width: 250px;
 				height: 250px;
-				border: solid @mostaza;
 			}
 
 			.clientImage {
-				width: 100%;
-				height: 100%;
-				background-image: url("../images/logo.png");
-				background-repeat: no-repeat;
-				background-size: 150px;
-				background-position: center;
+				@media @mobile {
+					width: 100%;
+				}
+				@media @desktop {
+					width: 260px;
+				}
+				height: 260px;
+				background-image: url(../img/backgroundPattern.png);
 				background-color: @darkBase;
+				opacity: 0.8;
+				// Fallback
+				position: absolute;
+				font-size: 19pt;
+				font-family: baloo tamma;
+				text-align: center;
+				color: rgb(255, 255, 255);
 			}
 
 			.clientName {
@@ -265,30 +308,41 @@ body {
 			}
 
 			.contacto {
+				background: none;
 				padding-right: 10px;
 				padding-left: 10px;
 				width: 100%;
 				position: absolute;
 				bottom: 0;
-				.clientDataOverImage;
-				@media @desktop {
-					width: 250px;
-					margin-left: 10px;
-					border-top: 3px solid @mostaza;
-					background-color: white;
-				}
 				@media @mobile {
-					padding: 10px;
+					position: absolute;
+					top: 240px;
+	    			padding: 5px;
+	    			z-index: 1;
+				}
+				@media @desktop {
+					bottom: 3px;
+					width: 98%;
 				}
 
 				.direccion {
 					font-family: 'Baloo Tamma';
 					font-weight: lighter;
 					@media @mobile {
+						text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+						background: rgba(255, 255, 255, 0.68);
+						text-align: center;
+						padding: 10px 10px;
+						border-radius: 50px;
+						border: 1px solid white;
 						float: left;
 						text-align: left;
 						line-height: 14px;
+					}
+					@media @desktop {
+						color: @text;
 						margin: 0;
+						float: right;
 					}
 				}
 
@@ -306,7 +360,7 @@ body {
 					font-size: 11pt;
 					font-weight: lighter;
 					font-family: baloo tamma;
-					text-align: center;
+					text-align: left;
 					@media @desktop {
 						color: @text;
 						margin: 0;
@@ -316,37 +370,46 @@ body {
 		}
 
 		.openClosedSign {
-			background: red;
+			background: @darkBase;
 			color: white;
-			font-weight: bold;
-			font-family: "baloo tamma";
 			padding-top: 1px;
 			text-align: center;
+			@media @desktop {
+				padding: 10px;
+				border: 1px solid;
+			}
 			@media @mobile {
-				position: absolute;
-				width: 102%;
-				top: 46px;
-				left: -30%;
-				transform: rotate(-45deg);
-				-webkit-box-shadow: 0px 0px 15px 0px black;
-				-moz-box-shadow:    0px 0px 15px 0px black;
-				box-shadow:         0px 0px 15px 0px black;
+				padding: 10px;
+				margin-bottom: 5px;
+			}
+
+			.open-closed-text {
+				font-weight: bold;
 			}
 
 			h3 {
 				@media @mobile {
+					color: #fafafa;
 					margin: 0;
+					font-weight: lighter;
+					margin: 0;
+					padding: 0 10px;
 				}
 
 				&.noOpenTime {
 					@media @mobile {
-						padding: 10px;
+						color: #fafafa;
+						font-weight: lighter;
+						margin: 0;
+						padding: 0 10px;
 					}
 				}
 			}
 
 			p {
 				@media @mobile {
+					font-weight: bold;
+					font-family: "baloo tamma";
 					margin: 0;
 				}
 				@media @desktop {
@@ -361,31 +424,43 @@ body {
 		.matchedProducts {
 			@media @desktop {
 				overflow: auto;
-				padding: 10px;
+				padding: 20px 10px 50px 10px;
 			}
 			@media @mobile {
-				padding: 10px 5px;
+				padding: 0 5px 10px;
+			}
+
+			.category-title {
+				text-align: center;
+				background: #ff9e0c;
+				font-size: 16px;
+				padding: 8px;
+				font-family: baloo tamma;
+				box-shadow: @buttonShadow;
 			}
 
 			.product {
-				margin: 10px 0;
 				overflow: hidden;
+				padding: 10px 5px;
+				border-bottom: 1px solid #BDBDBD;
 				@media @desktop {
 					padding-bottom: 10px;
 					border-bottom: dashed 1px lightgray;
+				}				
+				&:last-child {
+					border-bottom: 0;
 				}
 
-				&:last-child {
-					@media @desktop {
-						border-bottom: 0;
-					}
+				h3 {
+					text-align: center;
+					margin-top: 50px;
+					font-family: baloo tamma;
 				}
 
 				h5 {
 					margin: 0;
 
 					&.productName {
-						color: @text;
 						font-weight: bold;
 						overflow: hidden;
 						font-size: 16px;
@@ -394,7 +469,7 @@ body {
 					}
 
 					&.descripcion {
-						font-size: 10pt;
+						font-size: 11pt;
 						color: @text;
 					}
 
@@ -409,7 +484,20 @@ body {
 					}
 				}
 			}
-		}	
+		}
+
+		.bottomStoreName {
+			text-align: center;
+			font-family: baloo tamma;
+			width: 100%;
+			@media @desktop {
+				position: absolute;
+				bottom: -7px;
+			}
+			@media @mobile {
+				background-color: lightgray;
+			}
+		}
 	}
 }
 
@@ -420,21 +508,153 @@ body {
 	align-items: center;
 	flex-flow: column;
 	justify-content: space-around;
-	height: 80vh;
+	height: 79vh;
+    @media @mobile {
+		padding-top: 15vh;
+    }
 	@media @desktop {
 		height: 60vh;
 	}
 }
 
-a[href^="tel:"] {
-	img {
-		background-color: @callGreen;
+a[href^="tel:"] img {
+  background-color: hsla(88, 69%, 33%, 1);
+  width: 50px;
+  border: 2px solid white;
+  box-shadow: @buttonShadow;
+  border-radius: 35px;
+  position: absolute;
+  bottom: -20px;
+  right: 5px;
+  padding: 10px;
+}
+
+.geoLocation img {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  border: 2px solid white;
+  box-shadow: @buttonShadow;
+  border-radius: 35px;
+  position: absolute;
+  bottom: -20px;
+  padding: 10px;
+}
+
+.delivery {	
+	position: absolute;
+	background-image: url(../img/delivery.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 64px;
+	@media @desktop {
 		width: 50px;
-		border: 2px solid white;
-		border-radius: 35px;
-		position: absolute;
-		bottom: -10px;
-		right: 10px;
-		padding: 10px;
+		left: 18px;
+	}
+	@media @mobile {
+		right: 5px;
+		width: 14%;
+	}
+
+	.text {
+		background-repeat: no-repeat;
+		height: 25px;
+		width: 25px;
+		background-image: url(../img/tick-sign.png);
+		background-size: 100%;
+		@media @desktop {
+			position: relative;
+			margin: 5px 0;
+		}
+		@media @mobile {
+			margin: 10px 0;
+		}
+
+		&.noDelivery {
+			background-image: url(../img/close.png);
+			background-size: 70%;
+		}
+	}
+}
+
+//Suggestions screens
+#close-suggestions {
+	font-family: baloo tamma;
+    padding-top: 3px;
+	background: white;
+	text-align: center;
+	width: 50px;
+	line-height: 47px;
+	font-weight: bold;
+	border-radius: 100%;
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	color: black;
+	box-shadow: @buttonShadow;
+}
+
+.suggestionsHeader {
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}
+
+#searchSuggestionsButtonsContainer {
+	text-align: center;
+	@media @mobile {
+		overflow-y: scroll;
+		margin-bottom: 30px;
+	}
+	@media @desktop {
+		margin-bottom: 50px;
+	}
+	.searchSuggestionsButton {
+		background: @mostazaOscuro;
+		margin: 5px 1px;
+		padding: 1px;
+		width: 99%;
+		max-width: 350px;
+		display: inline-block;
+		box-shadow: 0px 2px 5px 0px black;
+		@media @mobile {
+			margin: 5px 1px;
+		}
+		@media @desktop {
+			margin: 5px;
+		}
+
+		.searchSuggestionsText {
+			font-family: 'Baloo Tamma';
+		}
+	}
+}
+
+// Footer
+#footer {
+	z-index: 2;
+	text-align: center;
+	width: 100vw;
+	position: fixed;
+	left: 0;
+	background-color: #2a424e;
+	box-shadow: @buttonShadow;
+	top: -1px;
+
+	#searchClientsHeader, #searchSuggestionsHeader {
+		color: @darkBase; 
+		font-family: 'Baloo Tamma';
+		margin: 0;
+		width: 50%;
+		margin: 0 auto;
+		background-color: @mostaza;
+		padding: 7px;
+		float: left;
+		height: 40px;
+		margin-top: -1px;
+		border-top: 1px solid rgba(17, 17, 17, 0.48);
+
+		&.selected {
+			background-color: @mostazaOscuro;
+		}
 	}
 }
