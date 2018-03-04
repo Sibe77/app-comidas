@@ -32,8 +32,8 @@
 
     <div class="matchedProducts">
 
-        <div ng-repeat="category in clientShown.client.categorias | orderBy : 'nombre'">
-            <h4 class="category-title" ng-bind="category.nombre | removePositionNumber" ng-if="searchText == clientShown.client.cliente" ng-click="toggleProductsDisplay(category.nombre)"></h4>
+        <div ng-repeat="category in clientShown.client.categorias">
+            <h4 class="category-title" ng-bind="category.nombre" ng-if="searchText == clientShown.client.cliente" ng-click="toggleProductsDisplay(category.nombre)"></h4>
 
             <div ng-repeat="product in clientShown.matchedProducts" class="product" ng-if="product.categoria[0].id === category.id" ng-show="showProducts[category.nombre] || searchText != clientShown.client.cliente">
                 <h5 class="price" ng-if="product.precio" ng-bind="::product.precio | currency:$"></h5>

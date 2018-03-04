@@ -90,8 +90,9 @@ body {
 		width: 60vw;
 	}
 	@media @mobile {
-		padding: 66px 26px 0;
+		padding: 80px 26px 0;
 		transition: top 0.3s;
+		margin-bottom: 20px;
 	}
 
 	&.nav-up {
@@ -110,7 +111,7 @@ body {
 
 	#searchterm {
 		width: 0;
-		height: 47px;
+		height: 45px;
 	}
 
 	&>input[type=text],
@@ -126,7 +127,7 @@ body {
 	}
 
 	&>button {
-		padding:0.6em 0.8em;
+		padding:0 0.8em;
 		background-color: @mostaza;
 		border:none;
 		img {
@@ -192,6 +193,10 @@ body {
 		@media @desktop {
 			padding: 0 20vw;
 		}
+		@media @mobile {
+			padding: 0 5vw;
+			font-size: 26px;
+		}
 	}
 
 	.logo {
@@ -212,7 +217,7 @@ body {
 /* RESULTS SCREEN */
 #resultsScreen {
 	@media @mobile {
-		padding: 60px 0 0;
+		padding: 70px 0 0;
 	}
 	@media @desktop {
 		padding-bottom: 35px;
@@ -282,7 +287,6 @@ body {
 				height: 260px;
 				background-image: url(../img/backgroundPattern.png);
 				background-color: @darkBase;
-				opacity: 0.8;
 				// Fallback
 				position: absolute;
 				font-size: 19pt;
@@ -542,7 +546,6 @@ a[href^="tel:"] img {
 
 .delivery {	
 	position: absolute;
-	background-image: url(../img/delivery.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	height: 64px;
@@ -552,26 +555,22 @@ a[href^="tel:"] img {
 	}
 	@media @mobile {
 		right: 5px;
-		width: 14%;
+		top: 5px;
 	}
 
 	.text {
 		background-repeat: no-repeat;
-		height: 25px;
-		width: 25px;
-		background-image: url(../img/tick-sign.png);
+		height: 40px;
+		width: 40px;
+		background-image: url(../img/conDelivery.png);
 		background-size: 100%;
 		@media @desktop {
 			position: relative;
 			margin: 5px 0;
 		}
-		@media @mobile {
-			margin: 10px 0;
-		}
 
 		&.noDelivery {
-			background-image: url(../img/close.png);
-			background-size: 70%;
+			background-image: url(../img/sinDelivery.png);
 		}
 	}
 }
@@ -580,7 +579,7 @@ a[href^="tel:"] img {
 #close-suggestions {
 	font-family: baloo tamma;
     padding-top: 3px;
-	background: white;
+	background: @mostaza;
 	text-align: center;
 	width: 50px;
 	line-height: 47px;
@@ -595,8 +594,9 @@ a[href^="tel:"] img {
 
 .suggestionsHeader {
 	text-align: center;
-	color: white;
+	color: #9d9d9d;
 	font-weight: bold;
+	font-size: 13px;
 }
 
 #searchSuggestionsButtonsContainer {
@@ -609,23 +609,37 @@ a[href^="tel:"] img {
 		margin-bottom: 50px;
 	}
 	.searchSuggestionsButton {
-		background: @mostazaOscuro;
+		background: rgba(0, 0, 0, 0.31);
 		margin: 5px 1px;
 		padding: 1px;
-		width: 99%;
 		max-width: 350px;
 		display: inline-block;
 		box-shadow: 0px 2px 5px 0px black;
 		@media @mobile {
+			width: 90%;
 			margin: 5px 1px;
+			border-radius: 10px;
 		}
 		@media @desktop {
+			width: 99%;
 			margin: 5px;
 		}
 
 		.searchSuggestionsText {
+			color: @mostaza;
 			font-family: 'Baloo Tamma';
 		}
+	}
+}
+
+#searchExactTerm {
+	color: #ff9e0c;
+	margin-top: 15px;
+	text-decoration: underline;
+	text-align: center;
+
+	#term {
+		font-weight: bold;
 	}
 }
 
@@ -636,25 +650,33 @@ a[href^="tel:"] img {
 	width: 100vw;
 	position: fixed;
 	left: 0;
-	background-color: #2a424e;
+	background-color: #ff9e0c;
 	box-shadow: @buttonShadow;
 	top: -1px;
 
-	#searchClientsHeader, #searchSuggestionsHeader {
+	#searchClientsHeader, .searchSuggestionsHeader {
 		color: @darkBase; 
 		font-family: 'Baloo Tamma';
 		margin: 0;
-		width: 50%;
+		width: 40%;
 		margin: 0 auto;
 		background-color: @mostaza;
 		padding: 7px;
 		float: left;
-		height: 40px;
+		height: 50px;
+		line-height: 40px;
 		margin-top: -1px;
-		border-top: 1px solid rgba(17, 17, 17, 0.48);
 
 		&.selected {
 			background-color: @mostazaOscuro;
+		}
+		&.home {
+			width: 20%;
+			background-image: url(../img/home.png);
+			background-repeat: no-repeat;
+			background-size: 30%;
+			background-position: 50%;
+			background-color: #f59b1c;
 		}
 	}
 }

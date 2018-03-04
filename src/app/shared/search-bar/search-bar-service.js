@@ -68,6 +68,10 @@ angular.module('app')
 	var matchesProduct = function (product, searchedWords, callingFromSuggestions) {
 		var matchesAllProductWords = true;
 		var currentProduct = accentsTidyAndLowercase(product.producto);
+		if (product.categoria[0]) {
+			var category = product.categoria[0].nombre;
+			currentProduct += category;
+		}
 		if (getRelatedProducts(currentProduct, callingFromSuggestions) != undefined) {
 			currentProduct += ' ' + getRelatedProducts(currentProduct, callingFromSuggestions);
 		}

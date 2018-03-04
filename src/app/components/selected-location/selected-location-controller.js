@@ -51,13 +51,15 @@ angular.module('app')
 		document.getElementById('searchterm').blur();
 		$scope.clientsShown = searchBarService.getMatches($scope.fieldBookData, searchedText, callingFromSuggestions);
 		$scope.noResults = searchBarService.noResults($scope.clientsShown);
-		$scope.searchText = searchedText;
 
 		var navBar = document.getElementById("searchBox");
 		var searchBox = document.getElementById("searchterm");
-		searchBox.value = searchedText;
+		var closeIcon = document.getElementById("close-suggestions");
 		navBar.style.display = "none";
+		closeIcon.style.display = "none";
 		navBar.className = "nav-up";
+
+		$scope.searchText = searchedText;
 
 		if ($scope.noResults) {
 			if (configurationService.general.appType === 'web') {

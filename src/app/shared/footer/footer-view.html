@@ -1,7 +1,8 @@
-<div id="close-suggestions" ng-click="close()" ng-show="showProducts || showStores">X</div>
+<div id="close-suggestions" ng-click="close()" ng-show="showProducts || showStores"><</div>
 <div id="footer">
-	<p id="searchSuggestionsHeader" ng-click="select('sugerencias')" ng-class="showProducts ? 'selected' : ''">PRODUCTOS</p>
-	<p id="searchClientsHeader" ng-click="select('locales')" ng-class="showStores ? 'selected' : ''">LOCALES</p>
-	<!-- <p id="searchSuggestionsHeader" ng-click="select('sugerencias')" ui-sref="productSuggestions()" ng-style="showProducts ? {'background-color': '#FF9E0C', 'color':'#2a5862'} : {}">SUGERENCIAS</p>
-	<p id="searchClientsHeader" ng-click="select('locales')" ui-sref="storeSuggestions()" ng-class="{selected: showStores}" ng-style="showStores ? {'background-color': '#FF9E0C', 'color':'#2a5862'} : {}">CARTAS</p> -->
+	<span ng-if="!showProducts" class="searchSuggestionsHeader" ng-click="select('sugerencias')">PRODUCTOS</span>
+	<span ng-if="showProducts" class="searchSuggestionsHeader selected" ng-click="select('sugerencias')">PRODUCTOS</span>
+	<span class="searchSuggestionsHeader home" ng-click="goHome()"></span>
+	<span ng-if="!showStores" class="searchSuggestionsHeader" ng-click="select('locales')">LOCALES</span>
+	<span ng-if="showStores" class="searchSuggestionsHeader selected" ng-click="select('locales')">LOCALES</span>
 </div>
